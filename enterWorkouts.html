@@ -10,7 +10,13 @@
    </head>
    <body >
       <div id='app'>
-         <button id='hw' v-on:click='onPressed'> {{test}} </p>
+         <div id='titlewrapper'>
+            <header id='titlebanner'> Track Your Workouts</header>
+         </div>
+         <div id='enterData'>
+            <input type="text" v-on:keyup="keyPressed" v-model="enteredText">
+            <p> {{enteredText}} </p>
+         </div>
       </div>
       <script src="js/enterWorkouts.js"></script>
 

@@ -1,15 +1,12 @@
 var enterView = new Vue({
     el: '#app',
     data: {
-        test: "Hello World",
+        enteredText: '',
     },
     methods: {
-        onPressed: function() {
-            if (this.test == "Hello World") {
-                this.test = "Pressed";
-            }
-            else {
-                this.test = "Hello World";
+        keyPressed: function(event) {
+            if (event.key == "Enter") {
+                console.log("enter pressed");
             }
         }
     }
