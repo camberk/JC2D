@@ -13,7 +13,21 @@
 
 <body>
     <div id='profile'>
-        <button id='hw' v-on:click='onPressed'> {{test}} </p>
+        <div style="display: inline-block;">
+            <img id='profilePicture' v-bind:src="profilePhotoUrl"/>
+        </div>
+        <div style="display: inline-block; padding: 10px;">
+            <p id='userNameText'>{{profileName}}</p>
+            <p id='profileNumberText'>{{profileNumber}}</p>
+        </div>
+        <div class="flexContaner">
+            <div class="achievementBox" v-for="value in profileAchievements">
+                <span class="achievementText">
+                    {{value.achievementName}}
+                </span>
+                <img class="achievementImage" v-bind:src="value.achievementPictureUrl"/>
+            </div>
+        </div>
     </div>
     <script src="js/profile.js"></script>
 

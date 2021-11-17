@@ -1,0 +1,34 @@
+#profilePicture{
+    display: block;
+    width: 200px;
+    height: 200px;
+}
+
+#userNameText{
+    font-size: 40px;
+    color: black;
+}
+
+#profileNumberText{
+    font-size: 20px;
+    color: lightgray;
+}
+
+.achievementBox{
+    width: 400px;
+    height: 400px;
+    display: inline-block;
+    position: relative;
+    text-align: center;
+    background-color: lightgray;
+    margin: 10px;
+}
+
+.achievementImage{
+    width: 300px;
+    height: 300px;
+}
+
+.achievementText{
+    font-size: 30px;
+}
