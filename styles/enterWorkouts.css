@@ -8,13 +8,22 @@
     border: 2px solid;
     margin-left: 50px;
     margin-right: 50px;
-    background-color: aqua;
+    background-color: #00ffc5;
 }
 
 #enterData{
     border: 2px solid;
     margin-top: 50px;
     margin-left: 50px;
-    width: 400px;
+    width: 500px;
     height: 300px;
+}
+
+.dataparent{
+    white-space: nowrap;
+}
+
+.datachild{
+    display: inline-block;
+    font-weight: bold;
 }
