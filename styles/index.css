@@ -1,6 +1,7 @@
 body {
     font-family: 'Tienne';
     color: #1B2021;
+    position: relative;
 }
 
 #topBar {
@@ -12,8 +13,7 @@ body {
     display: table;
     font-family: 'Tharlon';
     text-shadow: 1px 2px #05B28B;
-    z-index: 1;
-    
+    z-index: 3;
     
     
 }
@@ -32,11 +32,36 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    z-index: 2;
+    
 }
 
 .sideBarButtons {
-    height: 66px;
+    height: 80px;
     width: 202px;
     background-color: #06DEAD;
     font-size: 24px;
+    font-family: 'Tienne';
+    border-width: 0px;
+    text-align: left;
+}
+
+#barChartBackground {
+    width: 779px;
+    height: 477px;
+    position: absolute;
+    left: 25%;
+    top: 150%;
+    z-index: -1;
+    background-color: #00FFC5;;
+    border: 2px solid #06DEAD;;
+}
+
+#leaderboardChart {
+    position: absolute;
+    left: 30%;
+    top: 180%;
+    height: 400px !important;
+    width: 600px !important;
+    z-index: 1;
 }
