@@ -1,3 +1,7 @@
+Vue.component('reward-entry', {
+
+});
+
 let rewardView = new Vue({
   el: '#reward-app',
   data: {
