@@ -1,5 +1,6 @@
 Chart.defaults.global.defaultFontSize = 30;
 Chart.defaults.global.defaultFontFamily = 'Tienne';
+Chart.defaults.global.defaultFontColor = '#1B2021';
 
 $(document).ready(function () {
     var xValues =  ["You", "Frank", "Sam", "Ava", "Annie"];

@@ -47,11 +47,11 @@ body {
 }
 
 #barChartBackground {
-    width: 779px;
-    height: 477px;
+    width: 700px;
+    height: 400px;
     position: absolute;
     left: 25%;
-    top: 150%;
+    top: 120%;
     z-index: -1;
     background-color: #00FFC5;;
     border: 2px solid #06DEAD;;
@@ -60,8 +60,21 @@ body {
 #leaderboardChart {
     position: absolute;
     left: 30%;
-    top: 180%;
-    height: 400px !important;
+    top: 140%;
     width: 600px !important;
+    height: 350px !important;
     z-index: 1;
+}
+
+#enterExerciseButton {
+    position: absolute;
+    left: 37%;
+    top: 410%;
+    width: 400px;
+    height: 100px;
+    background-color: #F21B3F;
+    font-family: 'Tienne';
+    border-width: 3px;
+    border-color: #C81231;
+    font-size: 24px;
 }
