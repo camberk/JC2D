@@ -1,3 +1,9 @@
+html, body
+{
+    margin: 0px; padding: 0px
+}
+
+
 #profilePicture{
     margin: 15px;
     display: block;
