@@ -1,3 +1,25 @@
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";
+import { getDatabase, ref, set, push} from "https://www.gstatic.com/firebasejs/9.4.0/firebase-database.js";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyC_yI7DO1tu4-HAsNfPC-NC5yrv5bU5DcE",
+  authDomain: "jc2d-c4ce4.firebaseapp.com",
+  databaseURL: "https://jc2d-c4ce4-default-rtdb.firebaseio.com",
+  projectId: "jc2d-c4ce4",
+  storageBucket: "jc2d-c4ce4.appspot.com",
+  messagingSenderId: "969572763824",
+  appId: "1:969572763824:web:d67c3541186d49e263d375"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const uniqName = 'camberk'
+const d = new Date();
+
 var enterView = new Vue({
     el: '#app',
     data: {
@@ -5,12 +27,11 @@ var enterView = new Vue({
         weight: '',
         reps: '',
         sets: '',
-        date: '',
+        date: d.toDateString(),
         wt: false,
         w: false,
         r: false,
         s: false,
-        d: false,
         testdb: '',
     },
     methods: {
@@ -27,10 +48,24 @@ var enterView = new Vue({
             if (event.key == "Enter" && event.currentTarget.id == "numbersets") {
                 this.s = true;
             }
-            if (event.key == "Enter" && event.currentTarget.id == "date") {
-                this.d = true;
+        },
+        writeUserData: function() {
+            const db = getDatabase();
+            var data = {
+                'weight': this.weight,
+                'reps': this.reps,
+                'sets': this.sets,
+                'date': Date(),
             }
-            console.log(x);
-        }
+            let userRef = ref(db, [uniqName] + "_" + this.workoutType);
+            push(userRef, [data]);
+            onValue(starCountRef, (snapshot) => {
+                const data = snapshot.val();
+                updateStarCount(postElement, data);
+              });
+              
+
+        },
+        
     }
 })

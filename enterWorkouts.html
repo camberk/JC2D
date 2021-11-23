@@ -16,57 +16,36 @@
          <div id='enterData'>
             <div class='dataparent'>
                <p class='datachild'> Workout Type </p>
-               <input id='workouttype' class='datachild' type="text" v-on:keyup="enterData" v-model="workoutType">
-               <p class='datachild' v-if="wt"> {{workoutType}} </p>
+               <input id='workouttype' class='datachild' type="text" v-model="workoutType">
+               <p class='datachild'> {{workoutType}} </p>
             </div>
             <div class='dataparent'>
                <p class='datachild'>Weight</p>
-               <input id='weight' type="text" v-on:keyup="enterData" v-model="weight">
-               <p class='datachild' v-if="w"> {{weight}} lbs </p>
+               <input id='weight' type="text" v-model="weight">
+               <p class='datachild'> {{weight}} lbs </p>
             </div>
             <div class='dataparent'>
                <p class='datachild'>Number of Reps</p>
-               <input id='numberreps' type="text" v-on:keyup="enterData" v-model="reps">
-               <p class='datachild' v-if="r"> {{reps}} reps </p>
+               <input id='numberreps' type="text" v-model="reps">
+               <p class='datachild'> {{reps}} reps </p>
             </div>
             <div class='dataparent'>
                <p class='datachild'>Number of Sets</p>
-               <input id='numbersets' type="text" v-on:keyup="enterData" v-model="sets">
-               <p class='datachild' v-if="s"> {{sets}} sets </p>
+               <input id='numbersets' type="text" v-model="sets">
+               <p class='datachild'> {{sets}} sets </p>
             </div>
             <div class='dataparent'>
-               <p class='datachild'>Date</p>
-               <input id='date' type="text" v-on:keyup="enterData" v-model="date">
-               <p class='datachild' v-if="d"> {{date}} </p>
+               <p class='datachild'> {{date}} </p>
             </div>
-            <h1 id="bigOne" v-model="testdb"> {{testdb}} </h1>
+            <div>
+               <button id='enter' v-on:click='writeUserData'> Enter Data </p>
+            </div>
+            
+         </div>
+         <div id='showData'>
             
          </div>
       </div>
-      <script src="js/enterWorkouts.js" defer></script>
-      <!-- <script src="https://www.gstatic.com/firebasejs/9.4.1/firebase.js"></script> -->
-      <script type="module">
-         // Import the functions you need from the SDKs you need
-         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.1/firebase-app.js";
-         import { getDatabase } from "https://www.gstatic.com/firebasejs/9.4.1/firebase-database.js";
-         // TODO: Add SDKs for Firebase products that you want to use
-         // https://firebase.google.com/docs/web/setup#available-libraries
-       
-         // Your web app's Firebase configuration
-         const firebaseConfig = {
-           apiKey: "AIzaSyC_yI7DO1tu4-HAsNfPC-NC5yrv5bU5DcE",
-           authDomain: "jc2d-c4ce4.firebaseapp.com",
-           projectId: "jc2d-c4ce4",
-           storageBucket: "jc2d-c4ce4.appspot.com",
-           messagingSenderId: "969572763824",
-           appId: "1:969572763824:web:d67c3541186d49e263d375"
-         };
-       
-         // Initialize Firebase
-         const app = initializeApp(firebaseConfig);
-         const database = getDatabase(app);
-      </script>
-
-
+      <script type="module" src="js/enterWorkouts.js" defer></script>
    </body>
 </html>
