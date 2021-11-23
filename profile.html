@@ -7,16 +7,66 @@
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     <link rel="stylesheet" type="text/css" href="styles/profile.css">
-    </title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/tharlon.css">
+    <link href='https://fonts.googleapis.com/css?family=Tienne' rel='stylesheet'>
 </head>
 
 <body>
-    <div id='profile'>
-        <button id='hw' v-on:click='onPressed'> {{test}} </p>
+    <div id='app'>
+        <div id='topBar'>
+            <div id="topBarText">
+                DailyFitnessTracker.com
+            </div>
+        </div>
+        <div id='sideBar'>
+            <button class='sideBarButtons'>My Profile</button>
+            <button class='sideBarButtons'>View Rewards</button>
+            <button class='sideBarButtons'>View Progress</button>
+            <button class='sideBarButtons'>Help</button>
+        </div>
+        <div id='profile' style="display: block; position: relative; margin-left: 220px; margin-top: 2%;">
+            <div id="headerPhotoBox">
+                <img id="headerPhoto" v-bind:src="profileHeaderPhoto" />
+            </div>
+            <div style="display: inline-block;">
+                <img id='profilePicture' v-bind:src="profilePhotoUrl" />
+            </div>
+            <div style="display: inline-block; padding: 10px;">
+                <p id='userNameText'>{{profileName}}</p>
+                <p id='profileNumberText'>User ID: {{profileNumber}}</p>
+            </div>
+            <div style="display: block;">
+                <div id="achievementTitle"><span>Achievements<span></div>
+                <div id="flexContainer">
+                    <div class="achievementBox" v-for="value in profileAchievements">
+                        <p class="achievementText">
+                            {{value.achievementName}}
+                        </p>
+                        <img class="achievementImage" v-bind:src="value.achievementPictureUrl" />
+                        <p class="achievementDesc">
+                            {{value.achievementDescription}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div id="workoutBox">
+                <p>Workout History</p>
+                <div>
+                    <b-dropdown id="dropdown-1" text="Dropdown Button" class="m-md-2">
+                        <b-dropdown-item>First Action</b-dropdown-item>
+                        <b-dropdown-item>Second Action</b-dropdown-item>
+                        <b-dropdown-item>Third Action</b-dropdown-item>
+                        <b-dropdown-divider></b-dropdown-divider>
+                        <b-dropdown-item active>Active action</b-dropdown-item>
+                        <b-dropdown-item disabled>Disabled action</b-dropdown-item>
+                      </b-dropdown>
+                </div>
+            </div>
+        </div>
     </div>
     <script src="js/profile.js"></script>
-
 </body>
 
 </html>
