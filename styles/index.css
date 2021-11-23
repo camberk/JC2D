@@ -52,7 +52,7 @@ body {
     height: 400px;
     position: absolute;
     left: 25%;
-    top: 25%;
+    top: 23%;
     z-index: -1;
     background-color: #00FFC5;;
     border: 2px solid #06DEAD;;
@@ -61,7 +61,7 @@ body {
 #leaderboardChart {
     position: absolute;
     left: 30%;
-    top: 30%;
+    top: 28%;
     width: 600px !important;
     height: 350px !important;
     z-index: 1;
@@ -70,7 +70,7 @@ body {
 #enterExerciseButton {
     position: absolute;
     left: 37%;
-    top: 82%;
+    top: 78%;
     width: 400px;
     height: 100px;
     background-color: #F21B3F;
