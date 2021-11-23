@@ -1,3 +1,80 @@
-#hw{
-    font-size: 48px;
+body {
+    font-family: 'Tienne';
+    color: #1B2021;
+    position: relative;
+}
+
+#topBar {
+    height: 148px;
+    background-color: #0075A2;
+    width: 100%;
+    color: #00FFC5;
+    font-size: 64px;
+    display: table;
+    font-family: 'Tharlon';
+    text-shadow: 1px 2px #05B28B;
+    z-index: 3;
+    
+    
+}
+
+#topBarText {
+    vertical-align: middle;
+    display: table-cell;
+
+}
+
+#sideBar {
+    width: 202px;
+    height: 100%;
+    background-color: #00FFC5;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    z-index: 2;
+    
+}
+
+.sideBarButtons {
+    height: 80px;
+    width: 202px;
+    background-color: #06DEAD;
+    font-size: 24px;
+    font-family: 'Tienne';
+    border-width: 0px;
+    text-align: left;
+}
+
+#barChartBackground {
+    width: 700px;
+    height: 400px;
+    position: absolute;
+    left: 25%;
+    top: 120%;
+    z-index: -1;
+    background-color: #00FFC5;;
+    border: 2px solid #06DEAD;;
+}
+
+#leaderboardChart {
+    position: absolute;
+    left: 30%;
+    top: 140%;
+    width: 600px !important;
+    height: 350px !important;
+    z-index: 1;
+}
+
+#enterExerciseButton {
+    position: absolute;
+    left: 37%;
+    top: 410%;
+    width: 400px;
+    height: 100px;
+    background-color: #F21B3F;
+    font-family: 'Tienne';
+    border-width: 3px;
+    border-color: #C81231;
+    font-size: 24px;
 }
