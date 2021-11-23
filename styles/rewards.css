@@ -1,11 +1,10 @@
-#sideBar {
-  position: relative;
-}
 #pageContents {
   display: flex;
 }
 
 #rewardsPage {
+  display: inline-block;
+  height: 100%;
   margin: 40px;
   flex-grow: 2;
 }
