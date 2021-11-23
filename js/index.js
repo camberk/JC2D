@@ -3,12 +3,12 @@ Chart.defaults.global.defaultFontFamily = 'Tienne';
 Chart.defaults.global.defaultFontColor = '#1B2021';
 
 $(document).ready(function () {
-    var xValues =  ["You", "Frank", "Sam", "Ava", "Annie"];
-    var yValues = [55, 49, 44, 24, 15];
-    var barColors = ["red", "green","blue","orange","brown"];
     var path = window.location.pathname;
     var page = path.split("/").pop();
     if (page == "index.html") {
+        var xValues =  ["You", "Frank", "Sam", "Ava", "Annie"];
+        var yValues = [55, 49, 44, 24, 15];
+        var barColors = ["red", "green","blue","orange","brown"];
         var ctx = document.getElementById('leaderboardChart').getContext('2d');
         var leaderboardChart = new Chart(ctx, {
             type: "bar",
@@ -31,6 +31,24 @@ $(document).ready(function () {
       });
     }
 });
+
+function toHomepage() {
+    location.replace("index.html");
+}
+
+function toEnterWorkoutsPage() {
+    location.replace("enterWorkouts.html");
+}
+
+function toRewardsPage() {
+    location.replace("rewards.html");
+}
+
+function toProfilePage() {
+    location.replace("profile.html");
+}
+
+
 
 var profileView = new Vue({
     el: "#profile",
