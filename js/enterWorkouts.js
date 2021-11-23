@@ -58,12 +58,7 @@ var enterView = new Vue({
                 'date': Date(),
             }
             let userRef = ref(db, [uniqName] + "_" + this.workoutType);
-            push(userRef, [data]);
-            onValue(starCountRef, (snapshot) => {
-                const data = snapshot.val();
-                updateStarCount(postElement, data);
-              });
-              
+            push(userRef, [data]);              
 
         },
         
