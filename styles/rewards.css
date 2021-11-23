@@ -1,0 +1,106 @@
+#sideBar {
+  position: relative;
+}
+#pageContents {
+  display: flex;
+}
+
+#rewardsPage {
+  margin: 40px;
+  flex-grow: 2;
+}
+
+#rewardsInfo {
+  display: flex;
+  align-items: center;
+}
+
+#pointCounter {
+  background-color: #FF9914;
+  padding: 8px;
+  border-radius: 5px;
+  margin: 10px;
+  display: flex;
+}
+
+#rewardsQuery {
+  margin: 10px;
+}
+
+#rewardsGrid {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.rewardEntry {
+  perspective: 1000px;
+  margin: 10px;
+  border-radius: 5px;
+}
+
+.rewardEntry.hover .rewardFlip, .rewardEntry.flip .rewardFlip {
+  transform: rotateY(180deg);
+}
+
+.rewardEntry, .rewardFront, .rewardBack {
+  width: 340px;
+  height: 270px;
+  border-radius: 5px;
+}
+
+.rewardImg, .rewardDesc {
+  width: 270px;
+  height: 180px;
+  margin-bottom: 10px;
+}
+
+.rewardFlip {
+  transition: 0.6s;
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+.rewardFront, .rewardBack {
+  backface-visibility: hidden;
+  background-color: #1B2021;
+
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  display: flex;
+
+  padding: 30px;
+  top: 0;
+  left: 0;
+}
+
+.rewardFront {
+  z-index: 2;
+
+  transform: rotateY(0deg);
+}
+
+.rewardBack {
+  transform: rotateY(180deg);
+}
+
+.rewardDesc {
+  color: white;
+  font-size: 20px;
+  text-align: center;
+}
+
+.btn-reward {
+  color: #FFF;
+  background-color: #0075A2;
+  border-color: #0075A2;
+}
+
+.btn-confirm {
+  color: #FFF;
+  background-color: #F21B3F;
+  border-color: #F21B3F;
+}

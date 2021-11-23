@@ -5,12 +5,28 @@
       <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
       <script src="https://cdn.jsdelivr.net/npm/vue"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
       <link rel="stylesheet" type="text/css" href="styles/index.css">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/tharlon.css">
+      <link href='https://fonts.googleapis.com/css?family=Tienne' rel='stylesheet'>
       </title>
    </head>
    <body >
       <div id='app'>
-         <button id='hw' v-on:click='onPressed'> {{test}} </p>
+         <div id='topBar'>
+            <div id="topBarText">
+               DailyFitnessTracker.com
+            </div>
+         </div>
+         <div id='sideBar'>
+            <button class='sideBarButtons'>My Profile</button>
+            <button class='sideBarButtons'>View Rewards</button>
+            <button class='sideBarButtons'>View Progress</button>
+            <button class='sideBarButtons'>Help</button>
+         </div>
+         <div id='barChartBackground'></div>
+         <canvas id="leaderboardChart"></canvas>
+         <button id='enterExerciseButton'>Click to Enter Exercise!</button>
       </div>
       <script src="js/index.js"></script>
 
