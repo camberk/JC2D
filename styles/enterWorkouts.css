@@ -1,3 +1,9 @@
+#enterWorkoutsBody {
+    position: absolute;
+    left: 210px;
+    top: 25%;
+}
+
 #titlebanner{
     font-size: 48px;
     text-align: center;
@@ -5,31 +11,43 @@
 }
 
 #titlewrapper{
-    border: 2px solid;
+    border: 2px solid #06DEAD;
     margin-left: 50px;
     margin-right: 50px;
-    background-color: #0075A2;
+    background-color: #00FFC5;
+}
+
+#data {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 50px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+
 }
 
 #enterData{
     border: 2px solid;
-    margin-top: 50px;
-    margin-left: 50px;
+    padding: 20px;
     width: 500px;
     height: 300px;
-    position: relative;
-    display:inline-block
+    margin: 10px;
+    /* position: relative;
+    display:inline-block */
 }
 
 #showData{
     border: 2px solid;
-    margin-top: 50px;
-    margin-right: 50px;
-    float: right;
+    padding: 20px;
+    /* float: right; */
     width: 500px;
     height: 300px;
-    position: relative;
-    display:inline-block
+    margin: 10px;
+    /* position: relative;
+    display:inline-block */
 }
 
 .dataparent{

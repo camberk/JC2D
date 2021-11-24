@@ -5,47 +5,68 @@
       <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
       <script src="https://cdn.jsdelivr.net/npm/vue"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/tharlon.css">
+      <link href='https://fonts.googleapis.com/css?family=Tienne' rel='stylesheet'>
+      <link rel="stylesheet" type="text/css" href="styles/index.css">
       <link rel="stylesheet" type="text/css" href="styles/enterWorkouts.css">
       </title>
    </head>
    <body>
       <div id='app'>
-         <div id='titlewrapper'>
-            <header id='titlebanner'> Track Your Workouts</header>
+         <div id='topBar'>
+            <div id="topBarText">
+               DailyFitnessTracker.com
+            </div>
          </div>
-         <div id='enterData'>
-            <div class='dataparent'>
-               <p class='datachild'> Workout Type </p>
-               <input id='workouttype' class='datachild' type="text" v-model="workoutType">
-               <p class='datachild'> {{workoutType}} </p>
-            </div>
-            <div class='dataparent'>
-               <p class='datachild'>Weight</p>
-               <input id='weight' type="text" v-model="weight">
-               <p class='datachild'> {{weight}} lbs </p>
-            </div>
-            <div class='dataparent'>
-               <p class='datachild'>Number of Reps</p>
-               <input id='numberreps' type="text" v-model="reps">
-               <p class='datachild'> {{reps}} reps </p>
-            </div>
-            <div class='dataparent'>
-               <p class='datachild'>Number of Sets</p>
-               <input id='numbersets' type="text" v-model="sets">
-               <p class='datachild'> {{sets}} sets </p>
-            </div>
-            <div class='dataparent'>
-               <p class='datachild'> {{date}} </p>
-            </div>
-            <div>
-               <button id='enter' v-on:click='writeUserData'> Enter Data </p>
-            </div>
-            
+         <div id='sideBar'>
+            <button class='sideBarButtons' onclick="toHomepage()">Homepage</button>
+            <button class='sideBarButtons' onclick="toProfilePage()">My Profile</button>
+            <button class='sideBarButtons' onclick="toRewardsPage()">View Rewards</button>
+            <button class='sideBarButtons' onclick="toSettingsPage()">Settings</button>
          </div>
-         <div id='showData'>
+         <div id=enterWorkoutsBody>
+            <div id='titlewrapper'>
+               <header id='titlebanner'> Track Your Workouts</header>
+            </div>
+            <div id="data">
+               <div id='enterData'>
+                  <div class='dataparent'>
+                     <p class='datachild'> Workout Type </p>
+                     <input id='workouttype' class='datachild' type="text" v-model="workoutType">
+                     <p class='datachild'> {{workoutType}} </p>
+                  </div>
+                  <div class='dataparent'>
+                     <p class='datachild'>Weight</p>
+                     <input id='weight' type="text" v-model="weight">
+                     <p class='datachild'> {{weight}} lbs </p>
+                  </div>
+                  <div class='dataparent'>
+                     <p class='datachild'>Number of Reps</p>
+                     <input id='numberreps' type="text" v-model="reps">
+                     <p class='datachild'> {{reps}} reps </p>
+                  </div>
+                  <div class='dataparent'>
+                     <p class='datachild'>Number of Sets</p>
+                     <input id='numbersets' type="text" v-model="sets">
+                     <p class='datachild'> {{sets}} sets </p>
+                  </div>
+                  <div class='dataparent'>
+                     <p class='datachild'> {{date}} </p>
+                  </div>
+                  <div>
+                     <button id='enter' v-on:click='writeUserData'> Enter Data </p>
+                  </div>
+                  
+               </div>
+               <div id='showData'>
+                  
+               </div>
+            </div>
             
          </div>
       </div>
       <script src="js/enterWorkouts.js" defer></script>
+      <script src="js/index.js" defer></script>
    </body>
 </html>
