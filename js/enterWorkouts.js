@@ -1,7 +1,24 @@
 const uniqName = 'camberk'
-const d = new Date();
+// used to pull data from local storage for dataTbl dictionary
+function setData() {
+    if (localStorage.length != 0) {
+        dataTbl = {};
+        dataTbl = JSON.parse(localStorage.getItem("dataTBL"));
+    }
+    else {
+        dataTbl = {};
+    }
+}
+function clearData() {
+    localStorage.clear();
+    dataTbl = {};
+}
 
 let dataTbl = {};
+setData();
+// end of storage code
+
+const d = new Date();
 
 var enterView = new Vue({
     el: '#app',
@@ -53,7 +70,10 @@ var enterView = new Vue({
                     dataTbl[uniqName][this.workoutType].push(data);
                 }
             }
-            console.log(dataTbl);
+            let tempds = JSON.stringify(dataTbl);
+            localStorage.setItem("dataTBL", tempds);
+            let result = JSON.parse(localStorage.getItem("dataTBL"));
+            console.log(result);
         },
         
     }
