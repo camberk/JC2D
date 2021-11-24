@@ -8,11 +8,44 @@
       <link rel="stylesheet" type="text/css" href="styles/enterWorkouts.css">
       </title>
    </head>
-   <body >
+   <body>
       <div id='app'>
-         <button id='hw' v-on:click='onPressed'> {{test}} </p>
+         <div id='titlewrapper'>
+            <header id='titlebanner'> Track Your Workouts</header>
+         </div>
+         <div id='enterData'>
+            <div class='dataparent'>
+               <p class='datachild'> Workout Type </p>
+               <input id='workouttype' class='datachild' type="text" v-model="workoutType">
+               <p class='datachild'> {{workoutType}} </p>
+            </div>
+            <div class='dataparent'>
+               <p class='datachild'>Weight</p>
+               <input id='weight' type="text" v-model="weight">
+               <p class='datachild'> {{weight}} lbs </p>
+            </div>
+            <div class='dataparent'>
+               <p class='datachild'>Number of Reps</p>
+               <input id='numberreps' type="text" v-model="reps">
+               <p class='datachild'> {{reps}} reps </p>
+            </div>
+            <div class='dataparent'>
+               <p class='datachild'>Number of Sets</p>
+               <input id='numbersets' type="text" v-model="sets">
+               <p class='datachild'> {{sets}} sets </p>
+            </div>
+            <div class='dataparent'>
+               <p class='datachild'> {{date}} </p>
+            </div>
+            <div>
+               <button id='enter' v-on:click='writeUserData'> Enter Data </p>
+            </div>
+            
+         </div>
+         <div id='showData'>
+            
+         </div>
       </div>
-      <script src="js/enterWorkouts.js"></script>
-
+      <script src="js/enterWorkouts.js" defer></script>
    </body>
 </html>

@@ -1,3 +1,42 @@
-#hw{
+#titlebanner{
     font-size: 48px;
+    text-align: center;
+    padding: 5px;
+}
+
+#titlewrapper{
+    border: 2px solid;
+    margin-left: 50px;
+    margin-right: 50px;
+    background-color: #0075A2;
+}
+
+#enterData{
+    border: 2px solid;
+    margin-top: 50px;
+    margin-left: 50px;
+    width: 500px;
+    height: 300px;
+    position: relative;
+    display:inline-block
+}
+
+#showData{
+    border: 2px solid;
+    margin-top: 50px;
+    margin-right: 50px;
+    float: right;
+    width: 500px;
+    height: 300px;
+    position: relative;
+    display:inline-block
+}
+
+.dataparent{
+    white-space: nowrap;
+}
+
+.datachild{
+    display: inline-block;
+    font-weight: bold;
 }
