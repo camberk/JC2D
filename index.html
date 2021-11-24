@@ -22,11 +22,12 @@
             <button class='sideBarButtons' onclick="toProfilePage()">My Profile</button>
             <button class='sideBarButtons' onclick="toRewardsPage()">View Rewards</button>
             <button class='sideBarButtons'>View Progress</button>
-            <button class='sideBarButtons'>Help</button>
+            <button class='sideBarButtons' onclick="toSettingsPage()">Settings</button>
          </div>
          <div id='barChartBackground'></div>
          <canvas id="leaderboardChart"></canvas>
          <button id='enterExerciseButton' onclick="toEnterWorkoutsPage()">Click to Enter Exercise!</button>
+         <img id="settingsGearImg" src="img/settings-gears.jpg" onclick="toSettingsPage()">
       </div>
       <script src="js/index.js"></script>
 

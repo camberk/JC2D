@@ -2,6 +2,8 @@ Chart.defaults.global.defaultFontSize = 30;
 Chart.defaults.global.defaultFontFamily = 'Tienne';
 Chart.defaults.global.defaultFontColor = '#1B2021';
 
+var volumeSetting = 0.5;
+
 $(document).ready(function () {
     var path = window.location.pathname;
     var page = path.split("/").pop();
@@ -47,6 +49,15 @@ function toRewardsPage() {
 function toProfilePage() {
     location.replace("profile.html");
 }
+
+function toSettingsPage() {
+    location.replace("settings.html");
+}
+
+function updateSlider(slideAmount) {
+    volumeSetting = slideAmount / 100;
+    $('#volumeDisplay').html('Volume: ' + slideAmount);
+  }
 
 
 
