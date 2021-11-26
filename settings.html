@@ -7,6 +7,7 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
       <link rel="stylesheet" type="text/css" href="styles/index.css">
+      <link rel="stylesheet" type="text/css" href="styles/settings.css">
       <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/tharlon.css">
       <link href='https://fonts.googleapis.com/css?family=Tienne' rel='stylesheet'>
       </title>
@@ -19,15 +20,20 @@
             </div>
          </div>
          <div id='sideBar'>
-            <button class='sideBarButtons' onclick="toProfilePage()">My Profile</button>
+            <button class='sideBarButtons' onclick="toHomepage()">Homepage</button>
             <button class='sideBarButtons' onclick="toEnterWorkoutsPage()">Enter Exercise</button>
+            <button class='sideBarButtons' onclick="toProfilePage()">My Profile</button>
             <button class='sideBarButtons' onclick="toRewardsPage()">View Rewards</button>
-            <button class='sideBarButtons' onclick="toSettingsPage()">Settings</button>
-         </div>
-         <div id='barChartBackground'></div>
-         <canvas id="leaderboardChart"></canvas>
-         <button id='enterExerciseButton' onclick="toEnterWorkoutsPage()">Click to Enter Exercise!</button>
-         <img id="settingsGearImg" src="img/settings-gears.jpg" onclick="toSettingsPage()">
+        </div>
+        <div id="settingsBody">
+            <div id="settings" class="settingsText">Settings</div>
+            <div id="volumeBody">
+                <div class="settingsText" id='volumeDisplay'>Volume: 50</div>
+                <div id="slideContainer">
+                    <input type="range" min="1" max="100" value="50" class="slider" id="myVolumeRange" onchange="updateSlider(this.value)">
+                </div>
+            </div>
+        </div>
       </div>
       <script src="js/index.js"></script>
 
