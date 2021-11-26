@@ -102,6 +102,12 @@ var profileView = new Vue({
 
 Vue.component('reward-entry', {
     props: ['img', 'price', 'desc', 'flipped', 'index'],
+    methods: {
+        onRewardConfirm: function(e) {
+            console.log("Clicked");
+            e.stopPropagation();
+        }
+    },
     template: `<div class='rewardEntry' :class="{ 'flip' : flipped }">
         <div class='rewardFlip'>
           <div class='rewardFront' @click="flipped = true">
@@ -113,7 +119,7 @@ Vue.component('reward-entry', {
           <div class='rewardBack' @click="flipped = false">
               <div class='rewardDesc'>Raccoon prize</div>
               <div class='d-grid gap-2' style='align-self: stretch;'>
-                <button type='button' class='btn btn-confirm' @click="">Test</button>
+                <button type='button' class='btn btn-confirm' @click="onRewardConfirm">Test</button>
               </div>
           </div>
         </div>
