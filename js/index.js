@@ -60,7 +60,7 @@ $(document).ready(function () {
       });
     }
     if (page == "enterWorkouts.html") {
-        console.log(Object.keys(listOfExercises));
+        
 
     }
 });
@@ -111,7 +111,7 @@ var enterExercise = new Vue({
             this.exerciseSelected = exercise;
         },
         enterData: function(event) {
-            if (event.key == "Enter" && event.currentTarget.id == "workouttype") {
+            if (event.key == "Enter" && this.exerciseSelected != 'Select An Exercise') {
                 this.wt = true;
             }
             if (event.key == "Enter" && event.currentTarget.id == "weight") {
@@ -131,6 +131,7 @@ var enterExercise = new Vue({
                 'sets': this.sets,
                 'date': Date(),
             }
+            this.workoutType = this.exerciseSelected;
             if (!(dataTbl[uniqName])) {
                 let temp = {};
                 temp[this.workoutType] = [data]
