@@ -2,7 +2,9 @@ Chart.defaults.global.defaultFontSize = 30;
 Chart.defaults.global.defaultFontFamily = 'Tienne';
 Chart.defaults.global.defaultFontColor = '#1B2021';
 
+//GLOBAL VARIABLES
 var volumeSetting = 0.5;
+var listOfExercises = JSON.parse(exercises);
 
 // FOR EXERCISE ENTERING PAGE
 const uniqName = 'camberk'
@@ -26,6 +28,8 @@ setData();
 // end of storage code
 
 const d = new Date();
+
+
 
 $(document).ready(function () {
     var path = window.location.pathname;
@@ -54,6 +58,10 @@ $(document).ready(function () {
                 
             }
       });
+    }
+    if (page == "enterWorkouts.html") {
+        console.log(Object.keys(listOfExercises));
+
     }
 });
 
@@ -85,6 +93,8 @@ function updateSlider(slideAmount) {
 var enterExercise = new Vue({
     el: '#app',
     data: {
+        exerciseSelected: 'Select An Exercise',
+        listOfExercisesKeys: Object.keys(listOfExercises),
         workoutType: '',
         weight: '',
         reps: '',
@@ -97,6 +107,9 @@ var enterExercise = new Vue({
         testdb: '',
     },
     methods: {
+        selectExercise: function(exercise) {
+            this.exerciseSelected = exercise;
+        },
         enterData: function(event) {
             if (event.key == "Enter" && event.currentTarget.id == "workouttype") {
                 this.wt = true;
