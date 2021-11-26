@@ -1,30 +1,56 @@
-html, body
-{
-    margin: 0px; padding: 0px
+html,
+body {
+    margin: 0px;
+    padding: 0px
 }
 
+#timeDiv {
+    display: inline-block;
+    position: relative;
+    left: -46%;
+}
 
-#profilePicture{
+#profile {
+    display: block;
+    position: relative;
+    margin-left: 220px;
+    margin-top: 2%;
+}
+
+#profilePictureDiv {
+    display: inline-block;
+}
+
+#profileTextDiv {
+    display: inline-block;
+    padding: 10px;
+}
+
+#achievementDiv {
+    display: block;
+}
+
+#profilePicture {
     margin: 15px;
     display: block;
     width: 200px;
     height: 200px;
 }
 
-#userNameText{
+#userNameText {
     display: inline-block;
     font-size: 40px;
     color: white;
     text-shadow: lightgray;
 }
 
-#profileNumberText{
+#profileNumberText {
     display: block;
     font-size: 20px;
     color: lightgray;
 }
 
-#headerPhotoBox{
+#headerPhotoBox {
     position: absolute;
     width: 100%;
     height: 240px;
@@ -32,42 +58,42 @@ html, body
     z-index: -999;
 }
 
-#headerPhoto{
+#headerPhoto {
     width: 100%;
     height: 240px;
-    object-fit:cover;
+    object-fit: cover;
     text-align: center;
-    vertical-align:middle;
-
+    vertical-align: middle;
 }
 
-#achievementTitle{
+#achievementTitle {
     text-align: center;
-    display:block;
+    display: block;
     font-size: 40px;
     width: 100%;
     height: 100px;
     background-color: darkgray;
 }
 
-#workoutBox{
+#workoutBox {
     text-align: center;
-    display:block;
+    display: inline-block;
     font-size: 40px;
     width: 100%;
     height: 100px;
     background-color: darkgray;
 }
 
-#flexContainer{
+.achievementFlexContainer {
     height: 550px;
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
-    flex-direction:row;
-    overflow-x:hidden;
+    flex-direction: column;
+    overflow-x: auto;
 }
 
-.achievementBox{
+.achievementBox {
     width: 400px;
     height: 450px;
     display: inline-block;
@@ -77,14 +103,14 @@ html, body
     margin: 10px;
 }
 
-.achievementImage{
+.achievementImage {
     text-align: center;
     width: 300px;
     height: 300px;
-    object-fit:cover;
+    object-fit: cover;
 }
 
-.achievementText{
+.achievementText {
     font-size: 24px;
     top: -50%;
 }
@@ -105,26 +131,22 @@ body {
     font-family: 'Tharlon';
     text-shadow: 1px 2px #05B28B;
     z-index: 3;
-    
-    
 }
 
 #topBarText {
     vertical-align: middle;
     display: table-cell;
-
 }
 
 #sideBar {
     width: 202px;
     height: 100%;
     background-color: #00FFC5;
-    position: fixed;
+    position: sticky;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     z-index: 2;
-    
 }
 
 .sideBarButtons {
@@ -144,8 +166,10 @@ body {
     left: 25%;
     top: 120%;
     z-index: -1;
-    background-color: #00FFC5;;
-    border: 2px solid #06DEAD;;
+    background-color: #00FFC5;
+    ;
+    border: 2px solid #06DEAD;
+    ;
 }
 
 #leaderboardChart {
@@ -168,4 +192,84 @@ body {
     border-width: 3px;
     border-color: #C81231;
     font-size: 24px;
+}
+
+#timeDropBtn {
+    background-color: #06DEAD;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+#timeDropdown {
+    position: relative;
+    display: inline-block;
+}
+
+#timeDropdownContent {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+#timeDropdownContent a {
+    font-size: 16px;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+#timeDropdownContent a:hover {
+    background-color: #f1f1f1
+}
+
+#timeDropdown:hover #timeDropdownContent {
+    display: block;
+}
+
+#timeDropdown:hover #timeDropBtn {
+    background-color: #008d6c;
+}
+
+.workoutBox {
+    width: 400px;
+    height: auto;
+    display: inline-block;
+    position: relative;
+    text-align: center;
+    background-color: lightgray;
+    margin: 10px;
+}
+
+.workoutDate {
+    background-color: lightblue;
+    font-size: 36px;
+}
+
+.workoutName {
+    font-style: oblique;
+    font-size: 30px;
+}
+
+.workoutSets {
+    font-size: 28px;
+}
+
+.workoutReps {
+    font-size: 28px;
+}
+
+.workoutFlexContainer {
+    height: 350px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    overflow-x: auto;
 }

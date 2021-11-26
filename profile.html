@@ -3,8 +3,7 @@
 
 <head>
     <title>Profile</title>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
@@ -28,20 +27,20 @@
             <button class='sideBarButtons' onclick="toProfilePage()">My Profile</button>
             <button class='sideBarButtons' onclick="toSettingsPage()">Settings</button>
         </div>
-        <div id='profile' style="display: block; position: relative; margin-left: 220px; margin-top: 2%;">
+        <div id='profile'>
             <div id="headerPhotoBox">
                 <img id="headerPhoto" v-bind:src="profileHeaderPhoto" />
             </div>
-            <div style="display: inline-block;">
+            <div id='profilePictureDiv'>
                 <img id='profilePicture' v-bind:src="profilePhotoUrl" />
             </div>
-            <div style="display: inline-block; padding: 10px;">
+            <div id="profileTextDiv">
                 <p id='userNameText'>{{profileName}}</p>
                 <p id='profileNumberText'>User ID: {{profileNumber}}</p>
             </div>
-            <div style="display: block;">
+            <div id="achievementDiv">
                 <div id="achievementTitle"><span>Achievements<span></div>
-                <div id="flexContainer">
+                <div class="achievementFlexContainer">
                     <div class="achievementBox" v-for="value in profileAchievements">
                         <p class="achievementText">
                             {{value.achievementName}}
@@ -55,20 +54,32 @@
             </div>
             <div id="workoutBox">
                 <p>Workout History</p>
-                <div>
-                    <b-dropdown id="dropdown-1" text="Dropdown Button" class="m-md-2">
-                        <b-dropdown-item>First Action</b-dropdown-item>
-                        <b-dropdown-item>Second Action</b-dropdown-item>
-                        <b-dropdown-item>Third Action</b-dropdown-item>
-                        <b-dropdown-divider></b-dropdown-divider>
-                        <b-dropdown-item active>Active action</b-dropdown-item>
-                        <b-dropdown-item disabled>Disabled action</b-dropdown-item>
-                      </b-dropdown>
+                <div id="timeDiv">
+                    <div id="timeDropdown">
+                        <button id="timeDropBtn">Filter Time</button>
+                        <div id="timeDropdownContent">
+                            <a v-on:click="filterWeek()">Last Week</a>
+                            <a v-on:click="filterMonth">Last Month</a>
+                            <a v-on:click="filterAll">Last Year</a>
+                        </div>
+                    </div>
+                </div>
+                <span>For {{selectedFilter}}</span>
+                    <p v-if="!workoutBefore">You haven't worked out yet!<br />Get out there!</p>
+                    <div class="workoutFlexContainer">
+                        <div v-for="value in filteredWorkoutData">
+                            <div class="workoutBox">
+                                <p class="workoutDate">{{value.date}}</p>
+                                <p class="workoutName">{{value.name}}</p>
+                                <p class="workoutSets">Sets: {{value.sets}}</p>
+                                <p class="workoutReps">Reps: {{value.reps}}</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <script src="js/index.js"></script>
+        <script src="js/index.js"></script>
 </body>
 
 </html>

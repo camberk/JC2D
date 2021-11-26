@@ -4,33 +4,33 @@ Chart.defaults.global.defaultFontColor = '#1B2021';
 
 var volumeSetting = 0.5;
 
-$(document).ready(function () {
+$(document).ready(function() {
     var path = window.location.pathname;
     var page = path.split("/").pop();
     if (page == "index.html") {
-        var xValues =  ["You", "Frank", "Sam", "Ava", "Annie"];
+        var xValues = ["You", "Frank", "Sam", "Ava", "Annie"];
         var yValues = [55, 49, 44, 24, 15];
-        var barColors = ["red", "green","blue","orange","brown"];
+        var barColors = ["red", "green", "blue", "orange", "brown"];
         var ctx = document.getElementById('leaderboardChart').getContext('2d');
         var leaderboardChart = new Chart(ctx, {
             type: "bar",
             data: {
                 labels: xValues,
                 datasets: [{
-                backgroundColor: barColors,
-                data: yValues
-            }]
+                    backgroundColor: barColors,
+                    data: yValues
+                }]
             },
             options: {
-                legend: {display: false},
+                legend: { display: false },
                 title: {
                     display: true,
                     text: "Today's Leaderboard",
                     fontSize: 50,
                 }
-                
+
             }
-      });
+        });
     }
 });
 
@@ -54,10 +54,19 @@ function toSettingsPage() {
     location.replace("settings.html");
 }
 
+function sortDate(a, b) {
+    console.log(a);
+    var dateA = Date.parse(a.date);
+    var dateB = Date.parse(b.date);
+    console.log(dateA + " " + dateB)
+    console.log(dateA < dateB);
+    return dateB - dateA;
+}
+
 function updateSlider(slideAmount) {
     volumeSetting = slideAmount / 100;
     $('#volumeDisplay').html('Volume: ' + slideAmount);
-  }
+}
 
 
 
@@ -68,8 +77,7 @@ var profileView = new Vue({
         profileName: "John Smith",
         profileNumber: 23414,
         profileAge: 32,
-        profileAchievements: [
-            {
+        profileAchievements: [{
                 achievementName: "From Athens to Marathon",
                 achievementPictureUrl: "https://www.pinclipart.com/picdir/big/2-24050_11-marathon-clipart-png-transparent-png.png",
                 achievementDescription: "Run a total 26.2 miles in a week"
@@ -93,22 +101,137 @@ var profileView = new Vue({
                 achievementName: "Blast Off",
                 achievementPictureUrl: "https://i.imgur.com/XNmBnWU.png",
                 achievementDescription: "Complete your first workout"
-            }],
+            }
+        ],
+        workoutBefore: true,
+        workoutData: [{
+                date: "01 Jan 1970",
+                reps: 10,
+                sets: 3,
+                name: "Deadlift",
+                points: 30
+            },
+            {
+                date: "20 Nov 2021",
+                reps: 20,
+                sets: 4,
+                name: "Ab Crunch",
+                points: 40
+            },
+            {
+                date: "25 Nov 2021",
+                reps: 15,
+                sets: 5,
+                name: "Russian Twist",
+                points: 15
+            },
+            {
+                date: "21 Nov 2021",
+                reps: 20,
+                sets: 1,
+                name: "Up Downs",
+                points: 10
+            },
+            {
+                date: "5 Nov 2021",
+                reps: 5,
+                sets: 5,
+                name: "Bicep Curl",
+                points: 20
+            },
+            {
+                date: "Oct 5 2021",
+                reps: 4,
+                sets: 6,
+                name: "Tricep Extension",
+                points: 20
+            },
+            {
+                date: "Oct 3 2021",
+                reps: 1,
+                sets: 10,
+                name: "Butterfly Curl",
+                points: 5
+            }
+        ],
+        filteredWorkoutData: [],
+        selectedFilter: " last week",
         profilePhotoUrl: "https://i.stack.imgur.com/l60Hf.png",
         profileHeaderPhoto: "https://i.imgur.com/OOSF8qV.png"
-    }
-    //created() {
-        //on page loading, fetch profile name, profile photo
-        /*axious.get('/user?ID=123').then(
-            function(response){
-                this.profileName = response.name;
-                this.profilePhotoUrl = response.profilePhotoUrl;
+    },
+    methods: {
+        filterWeek: function() {
+            var currentDate = new Date();
+            this.filteredWorkoutData = [];
+            for (i = 0; i < this.workoutData.length; i++) {
+                console.log(this.workoutData[i]);
+                var ms = Date.parse(this.workoutData[i].date);
+                var converted = new Date(ms);
+                //get ms time difference => 1000ms/s * 60s/min * 60min/hour * 24hour/day
+                var diff = (currentDate - ms) / (1000 * 60 * 60 * 24);
+                console.log(diff);
+                if (diff <= 7) {
+                    console.log("Adding data");
+                    this.filteredWorkoutData.push(this.workoutData[i]);
+                }
             }
-        ).catch(function(error){
-            console.log(error);
-        });*/
+            this.filteredWorkoutData.sort(sortDate);
+            this.selectedFilter = " the last week";
+        },
+        filterMonth: function() {
+            var currentDate = new Date();
+            this.filteredWorkoutData = [];
+            for (i = 0; i < this.workoutData.length; i++) {
+                console.log(this.workoutData[i]);
+                var ms = Date.parse(this.workoutData[i].date);
+                var converted = new Date(ms);
+                //get ms time difference => 1000ms/s * 60s/min * 60min/hour * 24hour/day
+                var diff = (currentDate - ms) / (1000 * 60 * 60 * 24);
+                console.log(diff);
+                if (diff <= 30) {
+                    console.log("Adding data");
+                    this.filteredWorkoutData.push(this.workoutData[i]);
+                }
+            }
+            this.filteredWorkoutData.sort(sortDate);
+            this.selectedFilter = " the last month";
+        },
+        filterAll: function() {
+            this.filteredWorkoutData = this.workoutData;
+            this.filteredWorkoutData.sort(sortDate);
+            this.selectedFilter = " all time";
+        }
+    },
+    created: function() {
+        var currentDate = new Date();
+        this.filteredWorkoutData = [];
+        for (i = 0; i < this.workoutData.length; i++) {
+            console.log(this.workoutData[i]);
+            var ms = Date.parse(this.workoutData[i].date);
+            var converted = new Date(ms);
+            //get ms time difference => 1000ms/s * 60s/min * 60min/hour * 24hour/day
+            var diff = (currentDate - ms) / (1000 * 60 * 60 * 24);
+            console.log(diff);
+            if (diff <= 7) {
+                console.log("Adding data");
+                this.filteredWorkoutData.push(this.workoutData[i]);
+            }
+        }
+        this.filteredWorkoutData.sort(sortDate);
+        this.selectedFilter = " last week";
+    },
+    //created() {
+    //on page loading, fetch profile name, profile photo
+    /*axious.get('/user?ID=123').then(
+        function(response){
+            this.profileName = response.name;
+            this.profilePhotoUrl = response.profilePhotoUrl;
+        }
+    ).catch(function(error){
+        console.log(error);
+    });*/
     //}, 
-    
+
 });
 
 Vue.component('reward-entry', {
@@ -129,27 +252,27 @@ Vue.component('reward-entry', {
           </div>
         </div>
     </div>`
-  });
-  
-  let rewardView = new Vue({
+});
+
+let rewardView = new Vue({
     el: '#reward-app',
     data: {
-      search: '',
-      rewards: [false, false, false, false, false, false, false, false, false, false, false, false],
+        search: '',
+        rewards: [false, false, false, false, false, false, false, false, false, false, false, false],
     },
     methods: {
-      onSubmit: function(e) {
-        if (e.keycode == "Enter") {
-  
-        }
-      },
-  
-      onRewardClick: function(e) {
-  
-      },
-  
-      onRewardConfirm: function(e) {
-  
-      },
+        onSubmit: function(e) {
+            if (e.keycode == "Enter") {
+
+            }
+        },
+
+        onRewardClick: function(e) {
+
+        },
+
+        onRewardConfirm: function(e) {
+
+        },
     }
-  })
+})
