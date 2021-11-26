@@ -39,6 +39,10 @@
     display:inline-block */
 }
 
+.dropdown {
+    margin-bottom: 10px;
+}
+
 #showData{
     border: 2px solid;
     padding: 20px;

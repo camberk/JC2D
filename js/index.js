@@ -2,7 +2,34 @@ Chart.defaults.global.defaultFontSize = 30;
 Chart.defaults.global.defaultFontFamily = 'Tienne';
 Chart.defaults.global.defaultFontColor = '#1B2021';
 
+//GLOBAL VARIABLES
 var volumeSetting = 0.5;
+var listOfExercises = JSON.parse(exercises);
+
+// FOR EXERCISE ENTERING PAGE
+const uniqName = 'camberk'
+// used to pull data from local storage for dataTbl dictionary
+function setData() {
+    if (localStorage.length != 0) {
+        dataTbl = {};
+        dataTbl = JSON.parse(localStorage.getItem("dataTBL"));
+    }
+    else {
+        dataTbl = {};
+    }
+}
+function clearData() {
+    localStorage.clear();
+    dataTbl = {};
+}
+
+let dataTbl = {};
+setData();
+// end of storage code
+
+const d = new Date();
+
+
 
 $(document).ready(function() {
     var path = window.location.pathname;
@@ -31,6 +58,10 @@ $(document).ready(function() {
 
             }
         });
+    }
+    if (page == "enterWorkouts.html") {
+        
+
     }
 });
 
@@ -68,9 +99,7 @@ function updateSlider(slideAmount) {
     $('#volumeDisplay').html('Volume: ' + slideAmount);
 }
 
-
-
-var profileView = new Vue({
+  var profileView = new Vue({
     el: "#profile",
     data: {
         //store data for current profile
@@ -233,6 +262,74 @@ var profileView = new Vue({
     //}, 
 
 });
+
+var enterExercise = new Vue({
+    el: '#app',
+    data: {
+        exerciseSelected: 'Select An Exercise',
+        listOfExercisesKeys: Object.keys(listOfExercises),
+        workoutType: '',
+        weight: '',
+        reps: '',
+        sets: '',
+        date: d.toDateString(),
+        wt: false,
+        w: false,
+        r: false,
+        s: false,
+        testdb: '',
+    },
+    methods: {
+        selectExercise: function(exercise) {
+            this.exerciseSelected = exercise;
+        },
+        enterData: function(event) {
+            if (event.key == "Enter" && this.exerciseSelected != 'Select An Exercise') {
+                this.wt = true;
+            }
+            if (event.key == "Enter" && event.currentTarget.id == "weight") {
+                this.w = true;
+            }
+            if (event.key == "Enter" && event.currentTarget.id == "numberreps") {
+                this.r = true;
+            }
+            if (event.key == "Enter" && event.currentTarget.id == "numbersets") {
+                this.s = true;
+            }
+        },
+        writeUserData: function() {
+            var data = {
+                'weight': this.weight,
+                'reps': this.reps,
+                'sets': this.sets,
+                'date': Date(),
+            }
+            this.workoutType = this.exerciseSelected;
+            if (!(dataTbl[uniqName])) {
+                let temp = {};
+                temp[this.workoutType] = [data]
+                dataTbl[uniqName]= temp;
+                
+            }
+            else {
+                if (!(dataTbl[uniqName][this.workoutType])) {
+                    dataTbl[uniqName][this.workoutType] = [data];
+                }
+                else {
+                    dataTbl[uniqName][this.workoutType].push(data);
+                }
+            }
+            let tempds = JSON.stringify(dataTbl);
+            localStorage.setItem("dataTBL", tempds);
+            let result = JSON.parse(localStorage.getItem("dataTBL"));
+            console.log(result);
+        },
+    
+}
+});
+
+
+
 
 Vue.component('reward-entry', {
     props: ['img', 'price', 'desc', 'flipped', 'index'],
