@@ -272,11 +272,15 @@ var enterExercise = new Vue({
         weight: '',
         reps: '',
         sets: '',
+        minutes: '',
+        points: '',
         date: d.toDateString(),
         wt: false,
         w: false,
         r: false,
         s: false,
+        m: false,
+        p: false,
         testdb: '',
     },
     methods: {
@@ -296,13 +300,36 @@ var enterExercise = new Vue({
             if (event.key == "Enter" && event.currentTarget.id == "numbersets") {
                 this.s = true;
             }
+            if (event.key == "Enter" && event.currentTarget.id == "numberminutes") {
+                this.m = true;
+            }
+            if (event.key == "Enter") {
+                this.p = true;
+            }
         },
         writeUserData: function() {
-            var data = {
-                'weight': this.weight,
-                'reps': this.reps,
-                'sets': this.sets,
-                'date': Date(),
+            if (this.weight == '') {
+                this.weight = 0;
+            }
+            var data;
+            if (listOfExercises[this.exerciseSelected]["arePointsPerMinute"]) {
+                this.points = this.minutes * this.sets * listOfExercises[this.exerciseSelected]["points"];
+                data = {
+                    'sets': this.sets,
+                    'minutes': this.minutes,
+                    'points': this.points,
+                    'date': Date(),
+                }
+            } else {
+                this.points = (this.sets * this.reps * listOfExercises[this.exerciseSelected]["points"]) + 
+                ((this.weight + 1) * (listOfExercises[this.exerciseSelected]["points"] / 10));
+                data = {
+                    'weight': this.weight,
+                    'reps': this.reps,
+                    'sets': this.sets,
+                    'points': this.points,
+                    'date': Date(),
+                }
             }
             this.workoutType = this.exerciseSelected;
             if (!(dataTbl[uniqName])) {
