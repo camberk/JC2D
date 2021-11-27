@@ -64,7 +64,7 @@
                         </div>
                     </div>
                 </div>
-                <span>For {{selectedFilter}}</span>
+                <span id="forSelectedFilter">For {{selectedFilter}}</span>
                     <p v-if="!workoutBefore">You haven't worked out yet!<br />Get out there!</p>
                     <div class="workoutFlexContainer">
                         <div v-for="value in filteredWorkoutData">

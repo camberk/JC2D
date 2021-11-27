@@ -4,9 +4,6 @@ body {
     padding: 0px
 }
 
-#app {
-    height: 100%;
-}
 
 #timeDiv {
     display: inline-block;
@@ -211,7 +208,8 @@ body {
     font-size: 16px;
     border: none;
     cursor: pointer;
-    
+    position: absolute;
+    width: 120px;
 }
 
 #timeDropdown {
