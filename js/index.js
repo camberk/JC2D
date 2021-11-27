@@ -36,7 +36,26 @@ $(document).ready(function() {
     var page = path.split("/").pop();
     if (page == "index.html") {
         var xValues = ["You", "Frank", "Sam", "Ava", "Annie"];
-        var yValues = [55, 49, 44, 24, 15];
+        var yourPoints = 0;
+        if (localStorage.length != 0) {
+            let result = JSON.parse(localStorage.getItem("dataTBL"));
+            for (var key in result[uniqName]) {
+                result[uniqName][key].forEach(element => {
+                    if (isDateEqualToCurrentDate(element["date"])) {
+                        yourPoints += parseInt(element["points"]);
+                        console.log(yourPoints);
+                    }
+                });
+            }
+            console.log(result[uniqName]);
+        }
+        
+
+
+
+
+
+        var yValues = [yourPoints, 49, 44, 24, 15];
         var barColors = ["red", "green", "blue", "orange", "brown"];
         var ctx = document.getElementById('leaderboardChart').getContext('2d');
         var leaderboardChart = new Chart(ctx, {
@@ -64,6 +83,24 @@ $(document).ready(function() {
 
     }
 });
+
+function isDateEqualToCurrentDate(dateIn) {
+    var currentDate = new Date();
+    var newDate = new Date(dateIn);
+    var currentDay = currentDate.getDay();
+    var currentMonth = currentDate.getMonth();
+    var currentYear = currentDate.getFullYear();
+    if (currentDay != newDate.getDay()) {
+        return false;
+    }
+    if (currentMonth != newDate.getMonth()) {
+        return false;
+    }
+    if (currentYear != newDate.getFullYear()) {
+        return false;
+    }
+    return true;
+}
 
 function toHomepage() {
     location.replace("index.html");
