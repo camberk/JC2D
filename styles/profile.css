@@ -4,6 +4,10 @@ body {
     padding: 0px
 }
 
+#app {
+    height: 100%;
+}
+
 #timeDiv {
     display: inline-block;
     position: relative;
@@ -12,8 +16,12 @@ body {
 
 #profile {
     display: block;
-    position: relative;
-    margin-left: 220px;
+    position: absolute;
+    left: 20%;
+    top: 23%;
+    width: 75%;
+    height: 100%;
+    /* margin-left: 220px; */
     margin-top: 2%;
 }
 
@@ -33,7 +41,7 @@ body {
 #profilePicture {
     margin: 15px;
     display: block;
-    width: 200px;
+    width: 275px;
     height: 200px;
 }
 
@@ -140,12 +148,14 @@ body {
 
 #sideBar {
     width: 202px;
-    height: 100%;
-    background-color: #00FFC5;
+    height: 650px;
+    position: -webkit-sticky;
     position: sticky;
+    top: 0;
+    background-color: #00FFC5;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-evenly;
     z-index: 2;
 }
 
@@ -201,6 +211,7 @@ body {
     font-size: 16px;
     border: none;
     cursor: pointer;
+    
 }
 
 #timeDropdown {
