@@ -1,7 +1,7 @@
 Chart.defaults.global.defaultFontSize = 30;
 Chart.defaults.global.defaultFontFamily = 'Tienne';
 Chart.defaults.global.defaultFontColor = '#1B2021';
-
+Chart.defaults.scale.ticks.beginAtZero = true;
 //GLOBAL VARIABLES
 var volumeSettingGlobal = 0.5;
 var listOfExercises = JSON.parse(exercises);
