@@ -1,0 +1,65 @@
+[
+  {
+    "title": "McDonalds",
+    "desc": "Free small fry with your next meal",
+    "price": 250,
+    "code": "ABCDEFG",
+    "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/220px-McDonald%27s_Golden_Arches.svg.png"
+  },
+  {
+    "title": "Starbucks",
+    "desc": "$2 off your next drink!",
+    "price": 150,
+    "code": "ABCDEFG",
+    "img": "https://upload.wikimedia.org/wikipedia/en/thumb/d/d3/Starbucks_Corporation_Logo_2011.svg/125px-Starbucks_Corporation_Logo_2011.svg.png"
+  },
+  {
+    "title": "Starbucks",
+    "desc": "Buy one coffee, get one free!",
+    "price": 200,
+    "code": "ABCDEFG",
+    "img": "https://upload.wikimedia.org/wikipedia/en/thumb/d/d3/Starbucks_Corporation_Logo_2011.svg/125px-Starbucks_Corporation_Logo_2011.svg.png"
+  },
+  {
+    "title": "McDonalds",
+    "desc": "Free small fry with your next meal",
+    "price": 250,
+    "code": "ABCDEFG",
+    "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/220px-McDonald%27s_Golden_Arches.svg.png"
+  },
+  {
+    "title": "McDonalds",
+    "desc": "Free small fry with your next meal",
+    "price": 250,
+    "code": "ABCDEFG",
+    "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/220px-McDonald%27s_Golden_Arches.svg.png"
+  },
+  {
+    "title": "McDonalds",
+    "desc": "Free small fry with your next meal",
+    "price": 250,
+    "code": "ABCDEFG",
+    "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/220px-McDonald%27s_Golden_Arches.svg.png"
+  },
+  {
+    "title": "McDonalds",
+    "desc": "Free small fry with your next meal",
+    "price": 250,
+    "code": "ABCDEFG",
+    "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/220px-McDonald%27s_Golden_Arches.svg.png"
+  },
+  {
+    "title": "Target",
+    "desc": "15% off your next purchase of $20 or more!",
+    "price": 400,
+    "code": "ABCDEFG",
+    "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Target_%282018%29.svg/150px-Target_%282018%29.svg.png"
+  },
+  {
+    "title": "McDonalds",
+    "desc": "Free small fry with your next meal",
+    "price": 250,
+    "code": "ABCDEFG",
+    "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/220px-McDonald%27s_Golden_Arches.svg.png"
+  }
+]

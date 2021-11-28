@@ -11,6 +11,7 @@
       <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/tharlon.css">
       <link href='https://fonts.googleapis.com/css?family=Tienne' rel='stylesheet'>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
       </title>
    </head>
    <body >
@@ -29,28 +30,65 @@
             </div>
             <div id='rewardsPage'>
                <div id='rewardsInfo'>
-                  <input id='rewardsQuery' type="text" class='form-control' placeholder="Search rewards..." aria-label="Search rewards...">
+                  <input id='rewardsQuery' v-model="search" type="search" class='form-control' placeholder="Search rewards..." aria-label="Search rewards...">
                   <div class="dropdown">
-                     <button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown" style="margin-bottom:2px;">Sort rewards by:
-                     <span class="caret"></span></button>
-                     <ul class="dropdown-menu">
-                        <li><a href="#">Reset to original</a></li>
-                        <li><a href="#">Collection Name</a></li>
-                        <li><a href="#">Price</a></li>
+                     <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        Sort rewards by:
+                     </button>
+                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item" :class="{ active: sorting === 0 }" @click="updateRewardsSorting(0)" href="#">Reset to original</a></li>
+                        <li><a class="dropdown-item" :class="{ active: sorting === 1 }" @click="updateRewardsSorting(1)" href="#">Name</a></li>
+                        <li><a class="dropdown-item" :class="{ active: sorting === 2 }" @click="updateRewardsSorting(2)" href="#">Price (Low to High)</a></li>
+                        <li><a class="dropdown-item" :class="{ active: sorting === 3 }" @click="updateRewardsSorting(3)" href="#">Price (High to High)</a></li>
                      </ul>
                   </div>
                   <div id='pointCounter'>
                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-bicycle" viewBox="0 0 16 16">
                      <path d="M4 4.5a.5.5 0 0 1 .5-.5H6a.5.5 0 0 1 0 1v.5h4.14l.386-1.158A.5.5 0 0 1 11 4h1a.5.5 0 0 1 0 1h-.64l-.311.935.807 1.29a3 3 0 1 1-.848.53l-.508-.812-2.076 3.322A.5.5 0 0 1 8 10.5H5.959a3 3 0 1 1-1.815-3.274L5 5.856V5h-.5a.5.5 0 0 1-.5-.5zm1.5 2.443-.508.814c.5.444.85 1.054.967 1.743h1.139L5.5 6.943zM8 9.057 9.598 6.5H6.402L8 9.057zM4.937 9.5a1.997 1.997 0 0 0-.487-.877l-.548.877h1.035zM3.603 8.092A2 2 0 1 0 4.937 10.5H3a.5.5 0 0 1-.424-.765l1.027-1.643zm7.947.53a2 2 0 1 0 .848-.53l1.026 1.643a.5.5 0 1 1-.848.53L11.55 8.623z"/>
                      </svg>
-                     <span>137</span>
+                     <span>{{ pointCount }}</span>
                   </div>
                </div>
-               <div id='rewardsGrid'>
-                  <div v-for='(reward, index) in rewards'>
-                     <reward-entry
-                     :flipped="reward"
-                     ></reward-entry>
+               <ul class="nav nav-tabs" id="myTab" role="tablist">
+                  <li class="nav-item" role="presentation">
+                     <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#new" type="button" role="tab" aria-controls="home" aria-selected="true">New</button>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                     <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#unlocked" type="button" role="tab" aria-controls="profile" aria-selected="false">Unlocked</button>
+                  </li>
+               </ul>
+               <div class="tab-content" id="myTabContent">
+                  <div class="tab-pane fade show active" id="new" role="tabpanel" aria-labelledby="home-tab">
+                     <div class='rewardsGrid'>
+                        <div v-for='(reward, index) in displayRewards'>
+                           <reward-entry
+                           v-show="search === '' || reward['title'].toUpperCase().includes(search.toUpperCase()) || reward['desc'].toUpperCase().includes(search.toUpperCase())"
+                           :flipped="false"
+                           :title="reward['title']"
+                           :desc="reward['desc']"
+                           :price="reward['price']"
+                           :img="reward['img']"
+                           :disabled="reward['price'] > pointCount"
+                           :index="index"
+                           @unlock-event="onRewardConfirm($event)"
+                           ></reward-entry>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="tab-pane fade" id="unlocked" role="tabpanel" aria-labelledby="profile-tab">
+                     <div v-if="unlockedRewards.length != 0" class='rewardsGrid'>
+                        <div v-for='(reward, index) in unlockedRewards'>
+                           <unlocked-entry
+                           :flipped="false"
+                           :title="reward['title']"
+                           :desc="reward['desc']"
+                           :img="reward['img']"
+                           :code="reward['code']"
+                           :index="index"
+                           ></unlocked-entry>
+                        </div>
+                     </div>
+                     <div class='rewardsGrid' v-else>No Rewards Unlocked :(</div>
                   </div>
                </div>
             </div>
