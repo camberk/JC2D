@@ -428,51 +428,116 @@ var enterExercise = new Vue({
 
 
 Vue.component('reward-entry', {
-    props: ['img', 'price', 'desc', 'flipped', 'index'],
+    props: ['img', 'price', 'title', 'desc', 'flipped', 'index', 'disabled'],
     methods: {
         onRewardConfirm: function(e) {
-            console.log("Clicked");
+            this.$emit('unlock-event', this.index);
             e.stopPropagation();
         }
     },
     template: `<div class='rewardEntry' :class="{ 'flip' : flipped }">
         <div class='rewardFlip'>
           <div class='rewardFront' @click="flipped = true">
-              <img class='rewardImg' src='img/placeholder.jpeg'>
+              <img class='rewardImg' :src='img'>
               <div class='d-grid gap-2' style='align-self: stretch;'>
-                <button type='button' class='btn btn-reward'>Test</button>
+                <button type='button' class='btn btn-reward'>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-bicycle" viewBox="0 0 16 16">
+                    <path d="M4 4.5a.5.5 0 0 1 .5-.5H6a.5.5 0 0 1 0 1v.5h4.14l.386-1.158A.5.5 0 0 1 11 4h1a.5.5 0 0 1 0 1h-.64l-.311.935.807 1.29a3 3 0 1 1-.848.53l-.508-.812-2.076 3.322A.5.5 0 0 1 8 10.5H5.959a3 3 0 1 1-1.815-3.274L5 5.856V5h-.5a.5.5 0 0 1-.5-.5zm1.5 2.443-.508.814c.5.444.85 1.054.967 1.743h1.139L5.5 6.943zM8 9.057 9.598 6.5H6.402L8 9.057zM4.937 9.5a1.997 1.997 0 0 0-.487-.877l-.548.877h1.035zM3.603 8.092A2 2 0 1 0 4.937 10.5H3a.5.5 0 0 1-.424-.765l1.027-1.643zm7.947.53a2 2 0 1 0 .848-.53l1.026 1.643a.5.5 0 1 1-.848.53L11.55 8.623z"/>
+                    </svg>
+                    <span>{{ price }}</span>
+                </button>
               </div>
           </div>
           <div class='rewardBack' @click="flipped = false">
-              <div class='rewardDesc'>Raccoon prize</div>
+              <div class='rewardTitle'>{{ title }}</div>
+              <div class='rewardDesc'>{{ desc }}</div>
               <div class='d-grid gap-2' style='align-self: stretch;'>
-                <button type='button' class='btn btn-confirm' @click="onRewardConfirm">Test</button>
+                <button v-if='disabled' type='button' class='btn btn-confirm' disabled>Not Enough Points</button>
+                <button v-else type='button' class='btn btn-confirm' @click="onRewardConfirm">Redeem?</button>
               </div>
           </div>
         </div>
     </div>`
 });
 
+Vue.component('unlocked-entry', {
+    props: ['img', 'title', 'desc', 'flipped', 'index', 'code'],
+    template: `<div class='rewardEntry' :class="{ 'flip' : flipped }">
+        <div class='rewardFlip'>
+          <div class='rewardFront' @click="flipped = true">
+              <img class='rewardImg' :src='img'>
+              <div class='d-grid gap-2' style='align-self: stretch;'>
+                <button type='button' class='btn btn-reward'>View Code</button>
+              </div>
+          </div>
+          <div class='rewardBack' @click="flipped = false">
+              <div class='rewardTitle'>{{ title }}</div>
+              <div class='rewardDesc'>{{ desc }}</div>
+              <div class='d-grid gap-2' style='align-self: stretch;'>
+                <button type='button' class='btn btn-confirm' disabled>{{ code }}</button>
+              </div>
+          </div>
+        </div>
+    </div>`
+})
+
+let namePred = (a, b) => {
+    if (a["title"] < b["title"]) {
+        return -1;
+    }
+    if (a["title"] > b["title"]) {
+        return 1;
+    }
+    return 0;
+}
+
+let pricePred = (a, b) => {
+    return a["price"] - b["price"];
+}
+
 let rewardView = new Vue({
     el: '#reward-app',
     data: {
         search: '',
-        rewards: [false, false, false, false, false, false, false, false, false, false, false, false],
+        pointCount: 200,
+        sorting: 0,
+        rewards: [],
+        displayRewards: [],
+        unlockedRewards: []
+    },
+    created: function() {
+        fetch("./rewards.json")
+        .then(response => {
+            return response.json();
+        })
+        .then(jsondata => {
+            this.rewards = jsondata;
+            this.displayRewards = jsondata;
+        });
     },
     methods: {
-        onSubmit: function(e) {
-            if (e.keycode == "Enter") {
-
-            }
-        },
-
-        onRewardClick: function(e) {
-
-        },
-
         onRewardConfirm: function(e) {
-
+            this.pointCount -= this.rewards[e]['price'];
+            let unlocked = this.rewards.splice(e, 1);
+            this.unlockedRewards.push(unlocked[0]);
+            this.updateRewardsSorting(this.sorting);
         },
+
+        updateRewardsSorting: function(e) {
+            this.sorting = e;
+            this.displayRewards = new Array();
+            this.rewards.forEach(reward => {
+                this.displayRewards.push(reward);
+            });
+            if (e === 1) {
+                this.displayRewards.sort(namePred);
+            } else if (e === 2) {
+                this.displayRewards.sort(pricePred);
+            } else if (e === 3) {
+                this.displayRewards.sort(pricePred);
+                this.displayRewards.reverse();
+            }
+        }
     }
 });
 
