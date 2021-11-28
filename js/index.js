@@ -478,6 +478,8 @@ var enterExercise = new Vue({
             localStorage.setItem("dataTBL", tempds);
             let result = JSON.parse(localStorage.getItem("dataTBL"));
             console.log(result);
+
+            window.location.reload();
         },
     
 }
