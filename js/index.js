@@ -45,105 +45,107 @@ $(document).ready(function() {
     var path = window.location.pathname;
     var page = path.split("/").pop();
     if (page == "index.html") {
-        var xValues = ["You", "Frank", "Sam", "Ava", "Annie"];
-        var yourPoints = 0;
-        if (localStorage.length != 0) {
-            let result = JSON.parse(localStorage.getItem("dataTBL"));
+        drawLeaderBoardChart();
+    }
+    if (page == "enterWorkouts.html") {
+        drawProgressChart();
+    }
+});
+
+function drawLeaderBoardChart() {
+    var xValues = ["You", "Frank", "Sam", "Ava", "Annie"];
+    var yourPoints = 0;
+    if (localStorage.length != 0) {
+        let result = JSON.parse(localStorage.getItem("dataTBL"));
+        for (var key in result[uniqName]) {
+            result[uniqName][key].forEach(element => {
+                if (isDateEqualToCurrentDate(element["date"])) {
+                    yourPoints += parseInt(element["points"]);
+                }
+            });
+        }
+    }
+    setOthersPoints();
+    var othersPoints = JSON.parse(localStorage.getItem('othersPoints'));
+    var yValues = [yourPoints, parseInt(othersPoints['Frank']), parseInt(othersPoints['Sam']), 
+    parseInt(othersPoints['Ava']), parseInt(othersPoints['Annie'])];
+    var barColors = ["red", "green", "blue", "orange", "brown"];
+    var ctx = document.getElementById('leaderboardChart').getContext('2d');
+    var leaderboardChart = new Chart(ctx, {
+        type: "bar",
+        data: {
+            labels: xValues,
+            datasets: [{
+                backgroundColor: barColors,
+                data: yValues
+            }]
+        },
+        options: {
+            legend: { display: false },
+            title: {
+                display: true,
+                text: "Today's Leaderboard",
+                fontSize: 50,
+            }
+
+        }
+    });
+}
+
+function drawProgressChart() {
+    Chart.defaults.global.defaultFontSize = 15;
+    var currentDate = new Date();
+    var currentWeekDates = [];
+    for (var i = 6; i >= 0; --i) {
+        var tempDate = new Date();
+        tempDate.setDate(currentDate.getDate() - i);
+        currentWeekDates.push(tempDate);
+    }
+    var cleanDates = 
+    [(currentWeekDates[0].getMonth() + 1) + '/' + currentWeekDates[0].getDate(),
+    (currentWeekDates[1].getMonth() + 1) + '/' + currentWeekDates[1].getDate(),
+    (currentWeekDates[2].getMonth() + 1) + '/' + currentWeekDates[2].getDate(),
+    (currentWeekDates[3].getMonth() + 1) + '/' + currentWeekDates[3].getDate(),
+    (currentWeekDates[4].getMonth() + 1) + '/' + currentWeekDates[4].getDate(),
+    (currentWeekDates[5].getMonth() + 1) + '/' + currentWeekDates[5].getDate(),
+    (currentWeekDates[6].getMonth() + 1) + '/' + currentWeekDates[6].getDate()];
+    var yValues = [0, 0, 0, 0, 0, 0, 0];
+    var counter = 0;
+    if (localStorage.length != 0) {
+        let result = JSON.parse(localStorage.getItem("dataTBL"));
+        currentWeekDates.forEach(date => {
             for (var key in result[uniqName]) {
                 result[uniqName][key].forEach(element => {
-                    if (isDateEqualToCurrentDate(element["date"])) {
-                        yourPoints += parseInt(element["points"]);
+                    if (areDatesEqual(date, element["date"])) {
+                        yValues[counter] = yValues[counter] + parseInt(element["points"]);
                     }
                 });
             }
-            // console.log(result[uniqName]);
-        }
-        setOthersPoints();
-        var othersPoints = JSON.parse(localStorage.getItem('othersPoints'));
-        // console.log(othersPoints);
-        var yValues = [yourPoints, parseInt(othersPoints['Frank']), parseInt(othersPoints['Sam']), 
-        parseInt(othersPoints['Ava']), parseInt(othersPoints['Annie'])];
-        var barColors = ["red", "green", "blue", "orange", "brown"];
-        var ctx = document.getElementById('leaderboardChart').getContext('2d');
-        var leaderboardChart = new Chart(ctx, {
-            type: "bar",
-            data: {
-                labels: xValues,
-                datasets: [{
-                    backgroundColor: barColors,
-                    data: yValues
-                }]
-            },
-            options: {
-                legend: { display: false },
-                title: {
-                    display: true,
-                    text: "Today's Leaderboard",
-                    fontSize: 50,
-                }
-
-            }
+            counter++;
         });
     }
-    if (page == "enterWorkouts.html") {
-        Chart.defaults.global.defaultFontSize = 15;
-        var currentDate = new Date();
-        var currentWeekDates = [];
-        for (var i = 6; i >= 0; --i) {
-            var tempDate = new Date();
-            tempDate.setDate(currentDate.getDate() - i);
-            currentWeekDates.push(tempDate);
-        }
-        // console.log(currentWeekDates);
-        var cleanDates = 
-        [(currentWeekDates[0].getMonth() + 1) + '/' + currentWeekDates[0].getDate(),
-        (currentWeekDates[1].getMonth() + 1) + '/' + currentWeekDates[1].getDate(),
-        (currentWeekDates[2].getMonth() + 1) + '/' + currentWeekDates[2].getDate(),
-        (currentWeekDates[3].getMonth() + 1) + '/' + currentWeekDates[3].getDate(),
-        (currentWeekDates[4].getMonth() + 1) + '/' + currentWeekDates[4].getDate(),
-        (currentWeekDates[5].getMonth() + 1) + '/' + currentWeekDates[5].getDate(),
-        (currentWeekDates[6].getMonth() + 1) + '/' + currentWeekDates[6].getDate()];
-        // console.log(cleanDates);
-        var yValues = [0, 0, 0, 0, 0, 0, 0];
-        var counter = 0;
-        if (localStorage.length != 0) {
-            let result = JSON.parse(localStorage.getItem("dataTBL"));
-            currentWeekDates.forEach(date => {
-                for (var key in result[uniqName]) {
-                    result[uniqName][key].forEach(element => {
-                        if (areDatesEqual(date, element["date"])) {
-                            yValues[counter] = yValues[counter] + parseInt(element["points"]);
-                        }
-                    });
-                }
-                counter++;
-            });
-            // console.log(yValues);
-        }
-        var ctx = document.getElementById('progressChart').getContext('2d');
-        new Chart(ctx, {
-            type: "line",
-            data: {
-                labels: cleanDates,
-                datasets: [{
-                backgroundColor: "rgba(0,0,0,1.0)",
-                borderColor: "rgba(0,0,0,0.1)",
-                data: yValues
-                }]
-            },
-            options:{
-                legend: { display: false },
-                title: {
-                    display: true,
-                    text: "This Week's Progess",
-                    fontSize: 20,
-                }
-                
+    var ctx = document.getElementById('progressChart').getContext('2d');
+    new Chart(ctx, {
+        type: "line",
+        data: {
+            labels: cleanDates,
+            datasets: [{
+            backgroundColor: "rgba(0,0,0,1.0)",
+            borderColor: "rgba(0,0,0,0.1)",
+            data: yValues
+            }]
+        },
+        options:{
+            legend: { display: false },
+            title: {
+                display: true,
+                text: "This Week's Progess",
+                fontSize: 20,
             }
-        });
-
-    }
-});
+            
+        }
+    });
+}
 
 function setOthersPoints() {
     var currentDate = new Date();
@@ -484,7 +486,8 @@ var enterExercise = new Vue({
             let result = JSON.parse(localStorage.getItem("dataTBL"));
             console.log(result);
 
-            window.location.reload();
+            // window.location.reload();
+            drawProgressChart();
         },
     
 }
