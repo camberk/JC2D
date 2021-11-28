@@ -130,7 +130,7 @@ function drawProgressChart() {
         data: {
             labels: cleanDates,
             datasets: [{
-            backgroundColor: "rgba(0,0,0,1.0)",
+            backgroundColor: "#F21B3F",
             borderColor: "rgba(0,0,0,0.1)",
             data: yValues
             }]
@@ -139,7 +139,7 @@ function drawProgressChart() {
             legend: { display: false },
             title: {
                 display: true,
-                text: "This Week's Progess",
+                text: "This Week's Progress",
                 fontSize: 20,
             }
             
