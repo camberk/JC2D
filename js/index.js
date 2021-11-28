@@ -43,19 +43,16 @@ $(document).ready(function() {
                 result[uniqName][key].forEach(element => {
                     if (isDateEqualToCurrentDate(element["date"])) {
                         yourPoints += parseInt(element["points"]);
-                        console.log(yourPoints);
                     }
                 });
             }
-            console.log(result[uniqName]);
+            // console.log(result[uniqName]);
         }
-        
-
-
-
-
-
-        var yValues = [yourPoints, 49, 44, 24, 15];
+        setOthersPoints();
+        var othersPoints = JSON.parse(localStorage.getItem('othersPoints'));
+        console.log(othersPoints);
+        var yValues = [yourPoints, parseInt(othersPoints['Frank']), parseInt(othersPoints['Sam']), 
+        parseInt(othersPoints['Ava']), parseInt(othersPoints['Annie'])];
         var barColors = ["red", "green", "blue", "orange", "brown"];
         var ctx = document.getElementById('leaderboardChart').getContext('2d');
         var leaderboardChart = new Chart(ctx, {
@@ -83,6 +80,35 @@ $(document).ready(function() {
 
     }
 });
+
+function setOthersPoints() {
+    var currentDate = new Date();
+    console.log(Math.random(0, 10000));
+    if (localStorage.getItem('othersPoints')) {
+        var oldOthersPoints = JSON.parse(localStorage.getItem('othersPoints'));
+        if (!isDateEqualToCurrentDate(oldOthersPoints['date'])) {
+            var tempNewOthersPoints = {
+                'Frank': Math.floor(Math.random() * 10000),
+                'Sam': Math.floor(Math.random() * 2000),
+                'Ava': Math.floor(Math.random() * 5000),
+                'Annie': Math.floor(Math.random() * 15000),
+                'date': currentDate,
+            }
+            var newOthersPoints = JSON.stringify(tempNewOthersPoints);
+            localStorage.setItem('othersPoints', newOthersPoints);
+        }
+    } else {
+        var tempNewOthersPoints = {
+            'Frank': Math.floor(Math.random() * 10000),
+            'Sam': Math.floor(Math.random() * 2000),
+            'Ava': Math.floor(Math.random() * 5000),
+            'Annie': Math.floor(Math.random() * 15000),
+            'date': currentDate,
+        }
+        var newOthersPoints = JSON.stringify(tempNewOthersPoints);
+        localStorage.setItem('othersPoints', newOthersPoints);
+    }
+}
 
 function isDateEqualToCurrentDate(dateIn) {
     var currentDate = new Date();
