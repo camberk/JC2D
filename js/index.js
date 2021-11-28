@@ -60,7 +60,7 @@ $(document).ready(function() {
         }
         setOthersPoints();
         var othersPoints = JSON.parse(localStorage.getItem('othersPoints'));
-        console.log(othersPoints);
+        // console.log(othersPoints);
         var yValues = [yourPoints, parseInt(othersPoints['Frank']), parseInt(othersPoints['Sam']), 
         parseInt(othersPoints['Ava']), parseInt(othersPoints['Annie'])];
         var barColors = ["red", "green", "blue", "orange", "brown"];
@@ -86,7 +86,61 @@ $(document).ready(function() {
         });
     }
     if (page == "enterWorkouts.html") {
-        
+        Chart.defaults.global.defaultFontSize = 15;
+        var currentDate = new Date();
+        var currentWeekDates = [];
+        for (var i = 6; i >= 0; --i) {
+            var tempDate = new Date();
+            tempDate.setDate(currentDate.getDate() - i);
+            currentWeekDates.push(tempDate);
+        }
+        // console.log(currentWeekDates);
+        var cleanDates = 
+        [(currentWeekDates[0].getMonth() + 1) + '/' + currentWeekDates[0].getDate(),
+        (currentWeekDates[1].getMonth() + 1) + '/' + currentWeekDates[1].getDate(),
+        (currentWeekDates[2].getMonth() + 1) + '/' + currentWeekDates[2].getDate(),
+        (currentWeekDates[3].getMonth() + 1) + '/' + currentWeekDates[3].getDate(),
+        (currentWeekDates[4].getMonth() + 1) + '/' + currentWeekDates[4].getDate(),
+        (currentWeekDates[5].getMonth() + 1) + '/' + currentWeekDates[5].getDate(),
+        (currentWeekDates[6].getMonth() + 1) + '/' + currentWeekDates[6].getDate()];
+        // console.log(cleanDates);
+        var yValues = [0, 0, 0, 0, 0, 0, 0];
+        var counter = 0;
+        if (localStorage.length != 0) {
+            let result = JSON.parse(localStorage.getItem("dataTBL"));
+            currentWeekDates.forEach(date => {
+                for (var key in result[uniqName]) {
+                    result[uniqName][key].forEach(element => {
+                        if (areDatesEqual(date, element["date"])) {
+                            yValues[counter] = yValues[counter] + parseInt(element["points"]);
+                        }
+                    });
+                }
+                counter++;
+            });
+            // console.log(yValues);
+        }
+        var ctx = document.getElementById('progressChart').getContext('2d');
+        new Chart(ctx, {
+            type: "line",
+            data: {
+                labels: cleanDates,
+                datasets: [{
+                backgroundColor: "rgba(0,0,0,1.0)",
+                borderColor: "rgba(0,0,0,0.1)",
+                data: yValues
+                }]
+            },
+            options:{
+                legend: { display: false },
+                title: {
+                    display: true,
+                    text: "This Week's Progess",
+                    fontSize: 20,
+                }
+                
+            }
+        });
 
     }
 });
@@ -122,17 +176,22 @@ function setOthersPoints() {
 
 function isDateEqualToCurrentDate(dateIn) {
     var currentDate = new Date();
-    var newDate = new Date(dateIn);
-    var currentDay = currentDate.getDay();
-    var currentMonth = currentDate.getMonth();
-    var currentYear = currentDate.getFullYear();
-    if (currentDay != newDate.getDay()) {
+    return areDatesEqual(currentDate, dateIn);
+}
+
+function areDatesEqual(date1In, date2In) {
+    var date1 = new Date(date1In);
+    var date2 = new Date(date2In);
+    var date1Day = date1.getDay();
+    var date1Month = date1.getMonth();
+    var date1Year = date1.getFullYear();
+    if (date1Day != date2.getDay()) {
         return false;
     }
-    if (currentMonth != newDate.getMonth()) {
+    if (date1Month != date2.getMonth()) {
         return false;
     }
-    if (currentYear != newDate.getFullYear()) {
+    if (date1Year != date2.getFullYear()) {
         return false;
     }
     return true;
