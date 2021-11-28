@@ -3,20 +3,30 @@ Chart.defaults.global.defaultFontFamily = 'Tienne';
 Chart.defaults.global.defaultFontColor = '#1B2021';
 
 //GLOBAL VARIABLES
-var volumeSetting = 0.5;
+var volumeSettingGlobal = 0.5;
 var listOfExercises = JSON.parse(exercises);
 
 // FOR EXERCISE ENTERING PAGE
 const uniqName = 'camberk'
 // used to pull data from local storage for dataTbl dictionary
 function setData() {
-    if (localStorage.length != 0) {
+    if (localStorage.getItem("dataTBL")) {
         dataTbl = {};
         dataTbl = JSON.parse(localStorage.getItem("dataTBL"));
     }
     else {
         dataTbl = {};
     }
+    if (!localStorage.getItem('volumeLevel')) {
+        localStorage.setItem('volumeLevel', 0.5);
+    } 
+    // localStorage.setItem('volumeLevel', 0.5);
+    volumeSettingGlobal = localStorage.getItem('volumeLevel');
+    var slideAmount = volumeSettingGlobal * 100;
+    $('#volumeDisplay').html('Volume: ' + slideAmount);
+    $('#myVolumeRange').attr("value", slideAmount);
+    
+    
 }
 function clearData() {
     localStorage.clear();
@@ -157,10 +167,6 @@ function sortDate(a, b) {
     return dateB - dateA;
 }
 
-function updateSlider(slideAmount) {
-    volumeSetting = slideAmount / 100;
-    $('#volumeDisplay').html('Volume: ' + slideAmount);
-}
 
   var profileView = new Vue({
     el: "#profile",
@@ -327,7 +333,7 @@ function updateSlider(slideAmount) {
 });
 
 var enterExercise = new Vue({
-    el: '#app',
+    el: '#exercise-app',
     data: {
         exerciseSelected: 'Select An Exercise',
         listOfExercisesKeys: Object.keys(listOfExercises),
@@ -462,4 +468,10 @@ let rewardView = new Vue({
 
         },
     }
-})
+});
+
+function updateSlider(slideAmount) {
+    volumeSettingGlobal = slideAmount / 100;
+    localStorage.setItem('volumeLevel', volumeSettingGlobal);
+    $('#volumeDisplay').html('Volume: ' + slideAmount);
+}
