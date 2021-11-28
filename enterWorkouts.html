@@ -42,25 +42,25 @@
                       <li v-for="exercise in listOfExercisesKeys" v-on:click='selectExercise(exercise)'><a class="dropdown-item" href="#">{{exercise}}</a></li>
                      </ul>
                    </div>
-                  <div class='dataparent'>
+                  <div class='dataparent' v-if="weightAdded">
                      <p class='datachild'>Weight</p>
                      <input id='weight' type="text" v-model="weight">
                      <p class='datachild'> {{weight}} lbs </p>
                   </div>
-                  <div class='dataparent'>
+                  <div class='dataparent' v-if="!arePointsPerMinute">
                      <p class='datachild'>Number of Reps</p>
                      <input id='numberreps' type="text" v-model="reps">
                      <p class='datachild'> {{reps}} reps </p>
+                  </div>
+                  <div class='dataparent' v-if="arePointsPerMinute">
+                     <p class='datachild'>Number of Minutes</p>
+                     <input id='numberminutes' type="text" v-model="minutes">
+                     <p class='datachild'> {{minutes}} minutes </p>
                   </div>
                   <div class='dataparent'>
                      <p class='datachild'>Number of Sets</p>
                      <input id='numbersets' type="text" v-model="sets">
                      <p class='datachild'> {{sets}} sets </p>
-                  </div>
-                  <div class='dataparent'>
-                     <p class='datachild'>Number of Minutes</p>
-                     <input id='numberminutes' type="text" v-model="minutes">
-                     <p class='datachild'> {{minutes}} minutes </p>
                   </div>
                   <div class='dataparent'>
                      <p class='datachild'> {{date}} </p>
