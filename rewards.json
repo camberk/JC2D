@@ -4,6 +4,7 @@
     "desc": "Free small fry with your next meal",
     "price": 250,
     "code": "ABCDEFG",
+    "id": "0",
     "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/220px-McDonald%27s_Golden_Arches.svg.png"
   },
   {
@@ -11,6 +12,7 @@
     "desc": "$2 off your next drink!",
     "price": 150,
     "code": "ABCDEFG",
+    "id": "1",
     "img": "https://upload.wikimedia.org/wikipedia/en/thumb/d/d3/Starbucks_Corporation_Logo_2011.svg/125px-Starbucks_Corporation_Logo_2011.svg.png"
   },
   {
@@ -18,6 +20,7 @@
     "desc": "Buy one coffee, get one free!",
     "price": 200,
     "code": "ABCDEFG",
+    "id": "2",
     "img": "https://upload.wikimedia.org/wikipedia/en/thumb/d/d3/Starbucks_Corporation_Logo_2011.svg/125px-Starbucks_Corporation_Logo_2011.svg.png"
   },
   {
@@ -25,6 +28,7 @@
     "desc": "Free small fry with your next meal",
     "price": 250,
     "code": "ABCDEFG",
+    "id": "3",
     "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/220px-McDonald%27s_Golden_Arches.svg.png"
   },
   {
@@ -32,6 +36,7 @@
     "desc": "Free small fry with your next meal",
     "price": 250,
     "code": "ABCDEFG",
+    "id": "4",
     "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/220px-McDonald%27s_Golden_Arches.svg.png"
   },
   {
@@ -39,6 +44,7 @@
     "desc": "Free small fry with your next meal",
     "price": 250,
     "code": "ABCDEFG",
+    "id": "5",
     "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/220px-McDonald%27s_Golden_Arches.svg.png"
   },
   {
@@ -46,6 +52,7 @@
     "desc": "Free small fry with your next meal",
     "price": 250,
     "code": "ABCDEFG",
+    "id": "6",
     "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/220px-McDonald%27s_Golden_Arches.svg.png"
   },
   {
@@ -53,6 +60,7 @@
     "desc": "15% off your next purchase of $20 or more!",
     "price": 400,
     "code": "ABCDEFG",
+    "id": "7",
     "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Target_%282018%29.svg/150px-Target_%282018%29.svg.png"
   },
   {
@@ -60,6 +68,7 @@
     "desc": "Free small fry with your next meal",
     "price": 250,
     "code": "ABCDEFG",
+    "id": "8",
     "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/220px-McDonald%27s_Golden_Arches.svg.png"
   }
 ]
