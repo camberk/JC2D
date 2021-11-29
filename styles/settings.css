@@ -30,7 +30,7 @@
 .slider {
   -webkit-appearance: none;
   appearance: none;
-  background-color: #FF7C92;
+  background-color: #F8BE8C;
   outline: none;
   -webkit-transition: .2s;
   transition: opacity .2s;
@@ -46,7 +46,7 @@
   width: 25px;
   height: 25px;
   border-radius: 50%; 
-  background-color: #F21B3F;
+  background-color: #F2882C;
   cursor: pointer; 
 }
 

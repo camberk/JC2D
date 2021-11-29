@@ -130,7 +130,7 @@ function drawProgressChart() {
         data: {
             labels: cleanDates,
             datasets: [{
-            backgroundColor: "#F21B3F",
+            backgroundColor: "#F3933F",
             borderColor: "rgba(0,0,0,0.1)",
             data: yValues
             }]

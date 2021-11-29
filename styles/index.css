@@ -11,13 +11,13 @@ html, body
 
 #topBar {
     height: 148px;
-    background-color: #0075A2;
+    background-color: #1E3F20;
     width: 100%;
-    color: #00FFC5;
+    color: #64B96D;
     font-size: 64px;
     display: table;
     font-family: 'Tharlon';
-    text-shadow: 1px 2px #05B28B;
+    text-shadow: 1px 2px #4DAA57;
     z-index: 3;
     
     
@@ -34,7 +34,7 @@ html, body
     height: 650px;
     position: sticky;
     top: 0;
-    background-color: #00FFC5;
+    background-color: #4DAA57;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -45,7 +45,7 @@ html, body
 .sideBarButtons {
     height: 80px;
     width: 202px;
-    background-color: #06DEAD;
+    background-color: #3F8D47;
     font-size: 24px;
     font-family: 'Tienne';
     border-width: 0px;
@@ -59,8 +59,8 @@ html, body
     left: 25%;
     top: 23%;
     z-index: -1;
-    background-color: #00FFC5;
-    border: 2px solid #06DEAD;
+    background-color: #64B96D;
+    border: 2px solid #3F8D47;
 }
 
 #leaderboardChart {
@@ -78,10 +78,10 @@ html, body
     top: 78%;
     width: 400px;
     height: 100px;
-    background-color: #F21B3F;
+    background-color: #F3933F;
     font-family: 'Tienne';
     border-width: 3px;
-    border-color: #C81231;
+    border-color: #F2882C;
     font-size: 24px;
 }
 
