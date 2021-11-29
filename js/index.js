@@ -69,7 +69,7 @@ function drawLeaderBoardChart() {
     var othersPoints = JSON.parse(localStorage.getItem('othersPoints'));
     var yValues = [yourPoints, parseInt(othersPoints['Frank']), parseInt(othersPoints['Sam']), 
     parseInt(othersPoints['Ava']), parseInt(othersPoints['Annie'])];
-    var barColors = ["red", "green", "blue", "orange", "brown"];
+    var barColors = ["#EC0B43", "purple", " #0077B6", "orange", "brown"];
     var ctx = document.getElementById('leaderboardChart').getContext('2d');
     var leaderboardChart = new Chart(ctx, {
         type: "bar",
