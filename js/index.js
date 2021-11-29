@@ -581,7 +581,7 @@ let rewardView = new Vue({
     el: '#reward-app',
     data: {
         search: '',
-        pointCount: 200,
+        pointCount: 0,
         sorting: 0,
         rewards: [],
         displayRewards: [],
@@ -595,14 +595,56 @@ let rewardView = new Vue({
         .then(jsondata => {
             this.rewards = jsondata;
             this.displayRewards = jsondata;
+
+            if (localStorage.getItem('unlockedIDs')) {
+                let IDs = JSON.parse(localStorage.getItem('unlockedIDs'));
+                this.unlockedRewards = this.rewards.filter(reward => 
+                    typeof IDs.find(x => x == reward['id']) === 'string'
+                );
+                this.rewards = this.rewards.filter(reward => 
+                    typeof IDs.find(x => x == reward['id']) === 'undefined'
+                );
+                this.updateRewardsSorting(0);
+            }
         });
+        if (localStorage.getItem("dataTBL")) {
+            let result = JSON.parse(localStorage.getItem("dataTBL"));
+            for (var key in result[uniqName]) {
+                result[uniqName][key].forEach(element => {
+                    this.pointCount += parseInt(element["points"]);
+                });
+            }
+        }
+
+        if (localStorage.getItem("pointsSpent")) {
+            this.pointCount -= parseInt(localStorage.getItem("pointsSpent"));
+        }
+
+        
     },
     methods: {
         onRewardConfirm: function(e) {
             this.pointCount -= this.rewards[e]['price'];
             let unlocked = this.rewards.splice(e, 1);
+            console.log(unlocked);
             this.unlockedRewards.push(unlocked[0]);
             this.updateRewardsSorting(this.sorting);
+
+            // Update Database numbers
+            if (!localStorage.getItem("pointsSpent")) {
+                localStorage.setItem("pointsSpent", unlocked[0]['price']);
+            } else {
+                let temp = parseInt(localStorage.getItem("pointsSpent"));
+                localStorage.setItem("pointsSpent", temp + unlocked[0]['price']);
+            }
+
+            let unlockedIDs = [];
+            if (localStorage.getItem("unlockedIDs")) {
+                unlockedIDs = JSON.parse(localStorage.getItem('unlockedIDs'));
+            }
+            unlockedIDs.push(unlocked[0]['id']);
+            localStorage.setItem('unlockedIDs', JSON.stringify(unlockedIDs));
+            
         },
 
         updateRewardsSorting: function(e) {
