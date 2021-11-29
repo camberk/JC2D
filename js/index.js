@@ -365,6 +365,7 @@ function sortDate(a, b) {
         //parse the profile
         var data;
          fetch("./profile.json").then(Response=>Response.json()).then( jsonData => {
+             jsonData = jsonData["profile"];
              this.profileName = jsonData["profileName"];
              this.profileNumber = jsonData["profileNumber"];
              this.profileAge = jsonData["profileAge"];
