@@ -1,7 +1,7 @@
 Chart.defaults.global.defaultFontSize = 30;
 Chart.defaults.global.defaultFontFamily = 'Tienne';
 Chart.defaults.global.defaultFontColor = '#1B2021';
-
+Chart.defaults.scale.ticks.beginAtZero = true;
 //GLOBAL VARIABLES
 var volumeSettingGlobal = 0.5;
 var listOfExercises = JSON.parse(exercises);
@@ -55,7 +55,7 @@ $(document).ready(function() {
 function drawLeaderBoardChart() {
     var xValues = ["You", "Frank", "Sam", "Ava", "Annie"];
     var yourPoints = 0;
-    if (localStorage.length != 0) {
+    if (localStorage.getItem("dataTBL")) {
         let result = JSON.parse(localStorage.getItem("dataTBL"));
         for (var key in result[uniqName]) {
             result[uniqName][key].forEach(element => {
@@ -111,7 +111,7 @@ function drawProgressChart() {
     (currentWeekDates[6].getMonth() + 1) + '/' + currentWeekDates[6].getDate()];
     var yValues = [0, 0, 0, 0, 0, 0, 0];
     var counter = 0;
-    if (localStorage.length != 0) {
+    if (localStorage.getItem("dataTBL")) {
         let result = JSON.parse(localStorage.getItem("dataTBL"));
         currentWeekDates.forEach(date => {
             for (var key in result[uniqName]) {
