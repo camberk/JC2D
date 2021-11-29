@@ -265,7 +265,7 @@ function sortDate(a, b) {
         workoutBefore: true,
         workoutData: [{
                 date: "01 Jan 1970",
-                reps: 10,
+                reps: 10,                                                                                  
                 sets: 3,
                 name: "Deadlift",
                 points: 30
@@ -362,6 +362,19 @@ function sortDate(a, b) {
         }
     },
     created: function() {
+        //parse the profile
+        var data;
+         fetch("./profile.json").then(Response=>Response.json()).then( jsonData => {
+             this.profileName = jsonData["profileName"];
+             this.profileNumber = jsonData["profileNumber"];
+             this.profileAge = jsonData["profileAge"];
+             this.profileAchievements = jsonData["profileAchievements"];
+             this.workoutBefore = jsonData["workoutBefore"];
+             this.workoutData = jsonData["workoutData"];
+             this.profilePhotoUrl = jsonData["profilePhotoUrl"];
+             this.profileHeaderPhoto = jsonData["profileHeaderPhoto"];
+         });
+
         var currentDate = new Date();
         this.filteredWorkoutData = [];
         for (i = 0; i < this.workoutData.length; i++) {
