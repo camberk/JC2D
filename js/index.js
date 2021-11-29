@@ -139,7 +139,7 @@ function drawProgressChart() {
             legend: { display: false },
             title: {
                 display: true,
-                text: "This Week's Progress",
+                text: "Last 7 Days' Progress",
                 fontSize: 20,
             }
             
