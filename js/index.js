@@ -677,10 +677,10 @@ let rewardView = new Vue({
 });
 
 function updateSlider(slideAmount) {
-    successSound.play();
     volumeSettingGlobal = slideAmount / 100;
     exerciseEnteredSound.volume = volumeSettingGlobal;
     successSound.volume = volumeSettingGlobal;
+    successSound.play();
     localStorage.setItem('volumeLevel', volumeSettingGlobal);
     $('#volumeDisplay').html('Volume: ' + slideAmount);
 }
