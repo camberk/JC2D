@@ -298,6 +298,14 @@ var profileView = new Vue({
     },
     created: function () {
         //parse the profile
+        fetch("./profile.json").then(Response => Response.json()).then(jsonData => {
+            jsonData = jsonData["profile"];
+            this.profileName = jsonData["profileName"];
+            this.profileNumber = jsonData["profileNumber"];
+            this.profileAge = jsonData["profileAge"];
+            this.profilePhotoUrl = jsonData["profilePhotoUrl"];
+            this.profileHeaderPhoto = jsonData["profileHeaderPhoto"];
+        });
         if (localStorage.getItem("dataTBL")) {
             var result = JSON.parse(localStorage.getItem("dataTBL"));
             for (var key in result[uniqName]) {
@@ -321,14 +329,7 @@ var profileView = new Vue({
             var swimmer = false;
             var lifter = false;
             var biker = false;
-            fetch("./profile.json").then(Response => Response.json()).then(jsonData => {
-                jsonData = jsonData["profile"];
-                this.profileName = jsonData["profileName"];
-                this.profileNumber = jsonData["profileNumber"];
-                this.profileAge = jsonData["profileAge"];
-                this.profilePhotoUrl = jsonData["profilePhotoUrl"];
-                this.profileHeaderPhoto = jsonData["profileHeaderPhoto"];
-            });
+            
             var dateHash = {};
             var currentDate = new Date();
             this.filteredWorkoutData = [];
