@@ -39,6 +39,21 @@
     display:inline-block */
 }
 
+#btncontainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#enterbtn{
+    margin-right: 20px;
+}
+
+#deletebtn{
+    margin-left: 20px;
+    
+}
+
 .dropdown {
     margin-bottom: 10px;
 }

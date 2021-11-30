@@ -65,10 +65,14 @@
                   <div class='dataparent'>
                      <p class='datachild'> {{date}} </p>
                   </div>
-                  <div>
-                     <button id='enter' v-on:click='writeUserData'> Enter Data </p>
+                  <div id='btncontainer'>
+                     <div id='enterdiv'>
+                        <button id='enterbtn' v-on:click='writeUserData'> Enter Data </p>
+                     </div>
+                     <div id='deletediv'>
+                        <button v-if="showDelBtn" id='deletebtn' v-on:click='deleteWorkout'> Delete Previous Entry </p>
+                     </div>
                   </div>
-                  
                </div>
                <div id='showData'>
                   <canvas id="progressChart"></canvas>

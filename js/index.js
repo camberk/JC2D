@@ -19,7 +19,13 @@ function setData() {
     }
     if (!localStorage.getItem('volumeLevel')) {
         localStorage.setItem('volumeLevel', 0.5);
-    } 
+    }
+    if (!localStorage.getItem('prevKey')) {
+        localStorage.setItem('prevKey', '');
+    }
+    if (!localStorage.getItem('prevVal')) {
+        localStorage.setItem('prevVal', '');
+    }
     // localStorage.setItem('volumeLevel', 0.5);
     volumeSettingGlobal = localStorage.getItem('volumeLevel');
     var slideAmount = volumeSettingGlobal * 100;
@@ -428,6 +434,7 @@ var enterExercise = new Vue({
         testdb: '',
         arePointsPerMinute: false,
         weightAdded: false,
+        showDelBtn: false,
 
     },
     methods: {
@@ -500,12 +507,42 @@ var enterExercise = new Vue({
                     dataTbl[uniqName][this.workoutType].push(data);
                 }
             }
+            this.showDelBtn = true;
+            localStorage.setItem("prevKey", this.workoutType);
+            localStorage.setItem("prevVal", data);
             let tempds = JSON.stringify(dataTbl);
             localStorage.setItem("dataTBL", tempds);
             let result = JSON.parse(localStorage.getItem("dataTBL"));
             console.log(result);
 
             // window.location.reload();
+            drawProgressChart();
+        },
+        deleteWorkout: function() {
+            this.showDelBtn = false;
+            if (localStorage.getItem("prevKey") == '')
+            {
+                alert("nothing to delete");
+                return;
+            }
+            // let key = localStorage.getItem("prevKey");
+            let val = localStorage.getItem("prevVal");
+
+            if (localStorage.getItem("dataTBL")) {
+                let result = JSON.parse(localStorage.getItem("dataTBL"));
+                for (var key2 in result[uniqName]) {
+                    result[uniqName][key2].forEach(element => {
+                        if (element == val) {
+                            delete element;
+                        }
+                    });
+                }
+                dataTbl = result;
+                localStorage.setItem("dataTbl", dataTbl);
+            }
+            localStorage.setItem('prevKey', '');
+            localStorage.setItem('prevVal', '');
+            
             drawProgressChart();
         },
     
