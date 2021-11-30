@@ -298,128 +298,131 @@ var profileView = new Vue({
     },
     created: function () {
         //parse the profile
-        var result = JSON.parse(localStorage.getItem("dataTBL"));
-        for (var key in result[uniqName]) {
-            result[uniqName][key].forEach(element => {
-                var newObject = {
-                    date: element["date"],
-                    dateConvert: new Date(Date.parse(element["date"])).toDateString(),
-                    name: key,
-                    sets: element["sets"],
-                    reps: element["reps"],
-                    points: element["points"]
-                };
-                this.workoutData.push(newObject);
+        if (localStorage.getItem("dataTBL")) {
+            var result = JSON.parse(localStorage.getItem("dataTBL"));
+            for (var key in result[uniqName]) {
+                result[uniqName][key].forEach(element => {
+                    var newObject = {
+                        date: element["date"],
+                        dateConvert: new Date(Date.parse(element["date"])).toDateString(),
+                        name: key,
+                        sets: element["sets"],
+                        reps: element["reps"],
+                        points: element["points"]
+                    };
+                    this.workoutData.push(newObject);
+                });
+            }
+            var thousandPoints = false;
+            var blastOff = false;
+            var juniorVarsity = false;
+            var varsity = false;
+            var racer = false;
+            var swimmer = false;
+            var lifter = false;
+            var biker = false;
+            fetch("./profile.json").then(Response => Response.json()).then(jsonData => {
+                jsonData = jsonData["profile"];
+                this.profileName = jsonData["profileName"];
+                this.profileNumber = jsonData["profileNumber"];
+                this.profileAge = jsonData["profileAge"];
+                this.profilePhotoUrl = jsonData["profilePhotoUrl"];
+                this.profileHeaderPhoto = jsonData["profileHeaderPhoto"];
             });
-        }
-        var thousandPoints = false;
-        var blastOff = false;
-        var juniorVarsity = false;
-        var varsity = false;
-        var racer = false;
-        var swimmer = false;
-        var lifter = false;
-        var biker = false;
-        fetch("./profile.json").then(Response => Response.json()).then(jsonData => {
-            jsonData = jsonData["profile"];
-            this.profileName = jsonData["profileName"];
-            this.profileNumber = jsonData["profileNumber"];
-            this.profileAge = jsonData["profileAge"];
-            this.profilePhotoUrl = jsonData["profilePhotoUrl"];
-            this.profileHeaderPhoto = jsonData["profileHeaderPhoto"];
-        });
-        var dateHash = {};
-        var currentDate = new Date();
-        this.filteredWorkoutData = [];
-        for (i = 0; i < this.workoutData.length; i++) {
-            if(!blastOff){
-                blastOff = true;
-                this.profileAchievements.push({
-                    achievementName: "Blast Off",
-                    achievementPictureUrl: "./img/blastoff.png",
-                    achievementDescription: "Complete your first workout"
-                });
-            }
-            console.log(this.workoutData[i]);
-            var ms = Date.parse(this.workoutData[i].date);
-            var converted = new Date(ms);
-            //get ms time difference => 1000ms/s * 60s/min * 60min/hour * 24hour/day
-            var diff = (currentDate - ms) / (1000 * 60 * 60 * 24);
-            console.log(diff);
-            if (diff <= 7) {
-                this.weeklyPoints+=this.workoutData[i].points;
-                this.filteredWorkoutData.push(this.workoutData[i]);
-            }
-            if (diff <= 30){
-                this.monthlyPoints+=this.workoutData[i].points;
-            }
-            if(!thousandPoints && this.workoutData[i].points>=1000){
-                thousandPoints = true;
-                this.profileAchievements.push({
-                    achievementName: "1k",
-                    achievementPictureUrl: "./img/oneK.png",
-                    achievementDescription: "Enter an exercise worth 1000 points"
-                });
-            }
-            if(!swimmer && this.workoutData[i].name == "Swimming"){
-                swimmer = true;
-                this.profileAchievements.push({
-                    achievementName: "Swimmer",
-                    achievementPictureUrl: "./img/swimmer.png",
-                    achievementDescription: "Swim for the first time"
-                });
-            }
-            if(!racer && (this.workoutData[i].name == "Running" || this.workoutData[i].name == "Sprinting")){
-                racer = true;
-                this.profileAchievements.push({
-                    achievementName: "Racer",
-                    achievementPictureUrl: "./img/racer.png",
-                    achievementDescription: "Run for the first time"
-                });
-            }
-            if(!lifter && (this.workoutData[i].name == "Snatch" || this.workoutData[i].name == "Jerk" || this.workoutData[i].name == "Clean" || this.workoutData[i].name == "Press" || this.workoutData[i].name == "Push Press" || this.workoutData[i].name == "Deadlift" || this.workoutData[i].name == "Romanian Deadlift" || this.workoutData[i].name == "Bench Press" || this.workoutData[i].name == "Bicep Curls" || this.workoutData[i].name == "Tricep Extensions")){
-                lifter = true;
-                this.profileAchievements.push({
-                    achievementName: "Lifter",
-                    achievementPictureUrl: "./img/lifter.png",
-                    achievementDescription: "Lift for the first time"
-                });
-            }
-            if(!biker && this.workoutData[i].name == "Biking"){
-                biker = true;
-                this.profileAchievements.push({
-                    achievementName: "Biker",
-                    achievementPictureUrl: "./img/biker.png",
-                    achievementDescription: "Bike for the first time"
-                });
-            }
-            this.totalPoints+=this.workoutData[i].points;
-            if(this.workoutData[i].dateConvert in dateHash){
-                dateHash[this.workoutData[i].dateConvert]++;
-                if(!juniorVarsity && dateHash[this.workoutData[i].dateConvert] >= 2){
-                    console.log("Two values in one day");
-                    juniorVarsity = true;
+            var dateHash = {};
+            var currentDate = new Date();
+            this.filteredWorkoutData = [];
+            for (i = 0; i < this.workoutData.length; i++) {
+                if(!blastOff){
+                    blastOff = true;
                     this.profileAchievements.push({
-                        achievementName: "Junior Varisty",
-                        achievementPictureUrl: "./img/junior_varsity.png",
-                        achievementDescription: "Complete two workouts in a day"
+                        achievementName: "Blast Off",
+                        achievementPictureUrl: "./img/blastoff.png",
+                        achievementDescription: "Complete your first workout"
                     });
                 }
-                if(!varsity && dateHash[this.workoutData[i].dateConvert] >= 4){
-                    varsity = true;
+                console.log(this.workoutData[i]);
+                var ms = Date.parse(this.workoutData[i].date);
+                var converted = new Date(ms);
+                //get ms time difference => 1000ms/s * 60s/min * 60min/hour * 24hour/day
+                var diff = (currentDate - ms) / (1000 * 60 * 60 * 24);
+                console.log(diff);
+                if (diff <= 7) {
+                    this.weeklyPoints+=this.workoutData[i].points;
+                    this.filteredWorkoutData.push(this.workoutData[i]);
+                }
+                if (diff <= 30){
+                    this.monthlyPoints+=this.workoutData[i].points;
+                }
+                if(!thousandPoints && this.workoutData[i].points>=1000){
+                    thousandPoints = true;
                     this.profileAchievements.push({
-                        achievementName: "Varisty  Athlete",
-                        achievementPictureUrl: "./img/varsity.png",
-                        achievementDescription: "Complete four workouts in a day"
+                        achievementName: "1k",
+                        achievementPictureUrl: "./img/oneK.png",
+                        achievementDescription: "Enter an exercise worth 1000 points"
                     });
                 }
-            } else {
-                dateHash[this.workoutData[i].dateConvert] = 1
+                if(!swimmer && this.workoutData[i].name == "Swimming"){
+                    swimmer = true;
+                    this.profileAchievements.push({
+                        achievementName: "Swimmer",
+                        achievementPictureUrl: "./img/swimmer.png",
+                        achievementDescription: "Swim for the first time"
+                    });
+                }
+                if(!racer && (this.workoutData[i].name == "Running" || this.workoutData[i].name == "Sprinting")){
+                    racer = true;
+                    this.profileAchievements.push({
+                        achievementName: "Racer",
+                        achievementPictureUrl: "./img/racer.png",
+                        achievementDescription: "Run for the first time"
+                    });
+                }
+                if(!lifter && (this.workoutData[i].name == "Snatch" || this.workoutData[i].name == "Jerk" || this.workoutData[i].name == "Clean" || this.workoutData[i].name == "Press" || this.workoutData[i].name == "Push Press" || this.workoutData[i].name == "Deadlift" || this.workoutData[i].name == "Romanian Deadlift" || this.workoutData[i].name == "Bench Press" || this.workoutData[i].name == "Bicep Curls" || this.workoutData[i].name == "Tricep Extensions")){
+                    lifter = true;
+                    this.profileAchievements.push({
+                        achievementName: "Lifter",
+                        achievementPictureUrl: "./img/lifter.png",
+                        achievementDescription: "Lift for the first time"
+                    });
+                }
+                if(!biker && this.workoutData[i].name == "Biking"){
+                    biker = true;
+                    this.profileAchievements.push({
+                        achievementName: "Biker",
+                        achievementPictureUrl: "./img/biker.png",
+                        achievementDescription: "Bike for the first time"
+                    });
+                }
+                this.totalPoints+=this.workoutData[i].points;
+                if(this.workoutData[i].dateConvert in dateHash){
+                    dateHash[this.workoutData[i].dateConvert]++;
+                    if(!juniorVarsity && dateHash[this.workoutData[i].dateConvert] >= 2){
+                        console.log("Two values in one day");
+                        juniorVarsity = true;
+                        this.profileAchievements.push({
+                            achievementName: "Junior Varisty",
+                            achievementPictureUrl: "./img/junior_varsity.png",
+                            achievementDescription: "Complete two workouts in a day"
+                        });
+                    }
+                    if(!varsity && dateHash[this.workoutData[i].dateConvert] >= 4){
+                        varsity = true;
+                        this.profileAchievements.push({
+                            achievementName: "Varisty  Athlete",
+                            achievementPictureUrl: "./img/varsity.png",
+                            achievementDescription: "Complete four workouts in a day"
+                        });
+                    }
+                } else {
+                    dateHash[this.workoutData[i].dateConvert] = 1
+                }
             }
+            this.profileAchievements = this.profileAchievements.reverse();
+            this.filteredWorkoutData.sort(sortDate);
+            this.selectedFilter = " last week";
+            
         }
-        this.profileAchievements = this.profileAchievements.reverse();
-        this.filteredWorkoutData.sort(sortDate);
-        this.selectedFilter = " last week";
         
         
     }
