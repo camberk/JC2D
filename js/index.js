@@ -5,6 +5,8 @@ Chart.defaults.scale.ticks.beginAtZero = true;
 //GLOBAL VARIABLES
 var volumeSettingGlobal = 0.5;
 var listOfExercises = JSON.parse(exercises);
+var exerciseEnteredSound = new Audio('./sounds/exerciseEnteredSound.wav');
+var successSound = new Audio('./sounds/success.mp3');
 
 // FOR EXERCISE ENTERING PAGE
 const uniqName = 'camberk'
@@ -22,6 +24,8 @@ function setData() {
     } 
     // localStorage.setItem('volumeLevel', 0.5);
     volumeSettingGlobal = localStorage.getItem('volumeLevel');
+    exerciseEnteredSound.volume = volumeSettingGlobal;
+    successSound.volume = volumeSettingGlobal;
     var slideAmount = volumeSettingGlobal * 100;
     $('#volumeDisplay').html('Volume: ' + slideAmount);
     $('#myVolumeRange').attr("value", slideAmount);
@@ -501,6 +505,7 @@ var enterExercise = new Vue({
             console.log(result);
 
             // window.location.reload();
+            exerciseEnteredSound.play();
             drawProgressChart();
         },
     
@@ -667,7 +672,10 @@ let rewardView = new Vue({
 });
 
 function updateSlider(slideAmount) {
+    successSound.play();
     volumeSettingGlobal = slideAmount / 100;
+    exerciseEnteredSound.volume = volumeSettingGlobal;
+    successSound.volume = volumeSettingGlobal;
     localStorage.setItem('volumeLevel', volumeSettingGlobal);
     $('#volumeDisplay').html('Volume: ' + slideAmount);
 }
