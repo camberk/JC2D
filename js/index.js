@@ -5,6 +5,8 @@ Chart.defaults.scale.ticks.beginAtZero = true;
 //GLOBAL VARIABLES
 var volumeSettingGlobal = 0.5;
 var listOfExercises = JSON.parse(exercises);
+var exerciseEnteredSound = new Audio('./sounds/exerciseEnteredSound.wav');
+var successSound = new Audio('./sounds/success.mp3');
 
 // FOR EXERCISE ENTERING PAGE
 const uniqName = 'camberk'
@@ -22,6 +24,8 @@ function setData() {
     }
     // localStorage.setItem('volumeLevel', 0.5);
     volumeSettingGlobal = localStorage.getItem('volumeLevel');
+    exerciseEnteredSound.volume = volumeSettingGlobal;
+    successSound.volume = volumeSettingGlobal;
     var slideAmount = volumeSettingGlobal * 100;
     $('#volumeDisplay').html('Volume: ' + slideAmount);
     $('#myVolumeRange').attr("value", slideAmount);
@@ -67,9 +71,9 @@ function drawLeaderBoardChart() {
     }
     setOthersPoints();
     var othersPoints = JSON.parse(localStorage.getItem('othersPoints'));
-    var yValues = [yourPoints, parseInt(othersPoints['Frank']), parseInt(othersPoints['Sam']),
-        parseInt(othersPoints['Ava']), parseInt(othersPoints['Annie'])];
-    var barColors = ["red", "green", "blue", "orange", "brown"];
+    var yValues = [yourPoints, parseInt(othersPoints['Frank']), parseInt(othersPoints['Sam']), 
+    parseInt(othersPoints['Ava']), parseInt(othersPoints['Annie'])];
+    var barColors = ["#EC0B43", "purple", " #0077B6", "orange", "brown"];
     var ctx = document.getElementById('leaderboardChart').getContext('2d');
     var leaderboardChart = new Chart(ctx, {
         type: "bar",
@@ -130,16 +134,16 @@ function drawProgressChart() {
         data: {
             labels: cleanDates,
             datasets: [{
-                backgroundColor: "#F21B3F",
-                borderColor: "rgba(0,0,0,0.1)",
-                data: yValues
+            backgroundColor: "#F3933F",
+            borderColor: "rgba(0,0,0,0.1)",
+            data: yValues
             }]
         },
         options: {
             legend: { display: false },
             title: {
                 display: true,
-                text: "This Week's Progress",
+                text: "Last 7 Days' Progress",
                 fontSize: 20,
             }
 
@@ -470,7 +474,12 @@ var enterExercise = new Vue({
                 this.p = true;
             }
         },
-        writeUserData: function () {
+        writeUserData: function() {
+            if (this.exerciseSelected == 'Select An Exercise')
+            {
+                alert("please select an exercise.");
+                return;
+            }
             if (this.weight == '') {
                 this.weight = 0;
             }
@@ -515,6 +524,7 @@ var enterExercise = new Vue({
             console.log(result);
 
             // window.location.reload();
+            exerciseEnteredSound.play();
             drawProgressChart();
         },
 
@@ -682,6 +692,9 @@ let rewardView = new Vue({
 
 function updateSlider(slideAmount) {
     volumeSettingGlobal = slideAmount / 100;
+    exerciseEnteredSound.volume = volumeSettingGlobal;
+    successSound.volume = volumeSettingGlobal;
+    successSound.play();
     localStorage.setItem('volumeLevel', volumeSettingGlobal);
     $('#volumeDisplay').html('Volume: ' + slideAmount);
 }

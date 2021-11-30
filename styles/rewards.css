@@ -15,7 +15,7 @@
 }
 
 #pointCounter {
-  background-color: #FF9914;
+  background-color: #F3933F;
   padding: 8px;
   border-radius: 5px;
   margin: 10px;
@@ -100,12 +100,17 @@
 
 .btn-reward {
   color: #FFF;
-  background-color: #0075A2;
-  border-color: #0075A2;
+  background-color: #F3933F;
+  border-color: #F3933F;
 }
 
 .btn-confirm {
   color: #FFF;
   background-color: #F21B3F;
   border-color: #F21B3F;
+}
+
+#dropdownMenuButton1 {
+  background-color: #4DAA57;
+  border-color: #4DAA57;
 }
