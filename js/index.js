@@ -405,7 +405,7 @@ var profileView = new Vue({
                         achievementDescription: "Complete two workouts in a day"
                     });
                 }
-                if(!varsity && dateHash[this.workoutData[i].dateConvert] >= 2){
+                if(!varsity && dateHash[this.workoutData[i].dateConvert] >= 4){
                     varsity = true;
                     this.profileAchievements.push({
                         achievementName: "Varisty  Athlete",
