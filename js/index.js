@@ -461,6 +461,11 @@ var enterExercise = new Vue({
             }
         },
         writeUserData: function() {
+            if (this.exerciseSelected == 'Select An Exercise')
+            {
+                alert("please select an exercise.");
+                return;
+            }
             if (this.weight == '') {
                 this.weight = 0;
             }
