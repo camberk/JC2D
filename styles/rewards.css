@@ -49,7 +49,14 @@
   border-radius: 5px;
 }
 
-.rewardImg, .rewardDesc {
+.rewardImg {
+  height: 180px;
+  width: auto;
+  flex-shrink: 0;
+  margin-bottom: 10px;
+}
+
+.rewardDesc {
   width: 270px;
   height: 180px;
   margin-bottom: 10px;

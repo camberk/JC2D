@@ -1,8 +1,8 @@
 [
   {
     "title": "McDonalds",
-    "desc": "Free small fry with your next meal",
-    "price": 250,
+    "desc": "Free small ice cream, assuming the machine isn't broken",
+    "price": 200,
     "code": "ABCDEFG",
     "id": "0",
     "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/220px-McDonald%27s_Golden_Arches.svg.png"
@@ -24,12 +24,12 @@
     "img": "https://upload.wikimedia.org/wikipedia/en/thumb/d/d3/Starbucks_Corporation_Logo_2011.svg/125px-Starbucks_Corporation_Logo_2011.svg.png"
   },
   {
-    "title": "McDonalds",
-    "desc": "Free small fry with your next meal",
-    "price": 250,
-    "code": "ABCDEFG",
+    "title": "Treehouse 603",
+    "desc": "Free pre-roll",
+    "price": 500,
+    "code": "WLKJ2R",
     "id": "3",
-    "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/220px-McDonald%27s_Golden_Arches.svg.png"
+    "img": "https://www.treehouse603.com/wp-content/themes/treehouse/img/treehouse-primary-logo-nav.png"
   },
   {
     "title": "McDonalds",
@@ -40,35 +40,59 @@
     "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/220px-McDonald%27s_Golden_Arches.svg.png"
   },
   {
-    "title": "McDonalds",
-    "desc": "Free small fry with your next meal",
-    "price": 250,
-    "code": "ABCDEFG",
+    "title": "Auntie Anne's",
+    "desc": "Free cup of pretzel bites with your next order",
+    "price": 200,
+    "code": "L0V3PR3TZ",
     "id": "5",
-    "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/220px-McDonald%27s_Golden_Arches.svg.png"
+    "img": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fassets.website-files.com%2F570baa8b0dd2dc033a7b6feb%2F570bcfdb10732fe249105a9c_AuntieAnnesLogoLarge.png&f=1&nofb=1"
   },
   {
-    "title": "McDonalds",
-    "desc": "Free small fry with your next meal",
-    "price": 250,
+    "title": "Orange Julius",
+    "desc": "Free small smoothie",
+    "price": 350,
     "code": "ABCDEFG",
     "id": "6",
-    "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/220px-McDonald%27s_Golden_Arches.svg.png"
+    "img": "https://upload.wikimedia.org/wikipedia/en/4/48/Orange_Julius_logo.png"
   },
   {
     "title": "Target",
     "desc": "15% off your next purchase of $20 or more!",
     "price": 400,
-    "code": "ABCDEFG",
+    "code": "15OFF",
     "id": "7",
     "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Target_%282018%29.svg/150px-Target_%282018%29.svg.png"
   },
   {
-    "title": "McDonalds",
-    "desc": "Free small fry with your next meal",
-    "price": 250,
-    "code": "ABCDEFG",
+    "title": "Domino's Pizza",
+    "desc": "$3 off a large 3 topping pizza",
+    "price": 400,
+    "code": "FLKJ2LL",
     "id": "8",
-    "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/220px-McDonald%27s_Golden_Arches.svg.png"
+    "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Domino%27s_pizza_logo.svg/120px-Domino%27s_pizza_logo.svg.png"
+  },
+  {
+    "title": "M36 Coffee Roasters",
+    "desc": "Free specialty cold brew",
+    "price": 250,
+    "code": "C0LDBR3W",
+    "id": "9",
+    "img": "https://www.m36coffeeroasters.com/wp-content/uploads/2020/05/M36-Small.png"
+  },
+  {
+    "title": "Insomnia Cookies",
+    "desc": "$5 off a dozen delux cookies",
+    "price": 500,
+    "code": "C00K13",
+    "id": "10",
+    "img": "https://upload.wikimedia.org/wikipedia/en/thumb/6/67/Insomnia_Cookies_logo.svg/180px-Insomnia_Cookies_logo.svg.png"
+  },
+  {
+    "title": "Michigan Creamery",
+    "desc": "Free large ice cream with a waffle cone!",
+    "price": 450,
+    "code": "LK322KW",
+    "id": "11",
+    "img": "https://img1.wsimg.com/isteam/ip/29c5b2c3-2c32-4741-bdf3-69f0e7161544/logo/18e1cbcc-bc61-42c0-b1e5-5b3aaa8f2b4a.png"
   }
 ]
