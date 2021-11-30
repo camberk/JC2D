@@ -2,85 +2,12 @@
     "profileName": "John Smith",
     "profileNumber": 23414,
         "profileAge": 32,
-        "profileAchievements": [{
-                "achievementName": "From Athens to Marathon",
-                "achievementPictureUrl": "https://www.pinclipart.com/picdir/big/2-24050_11-marathon-clipart-png-transparent-png.png",
-                "achievementDescription": "Run a total 26.2 miles in a week"
-            },
-            {
-                "achievementName": "Varisty  Athlete",
-                "achievementPictureUrl": "https://pngimage.net/wp-content/uploads/2018/05/champ-png-6.png",
-                "achievementDescription": "Complete 30 days of workouts"
-            },
-            {
-                "achievementName": "Tear It Up!",
-                "achievementPictureUrl": "https://www.clipartmax.com/png/full/80-802036_skateboard-clipart-transparent-skateboarder-pdf.png",
-                "achievementDescription": "Skate, ski, or ride for the first time"
-            },
-            {
-                "achievementName": "Junior Varisty",
-                "achievementPictureUrl": "https://www.pinclipart.com/picdir/big/459-4590529_muscle-flex-outline-comments-flexing-arm-no-background.png",
-                "achievementDescription": "Complete a week of workouts"
-            },
-            {
-                "achievementName": "Blast Off",
-                "achievementPictureUrl": "https://i.imgur.com/XNmBnWU.png",
-                "achievementDescription": "Complete your first workout"
-            }
-        ]},
+        "profileAchievements": [],
         "workoutBefore": true,
-        "workoutData": [{
-                "date": "01 Jan 1970",
-                "reps": 10,
-                "sets": 3,
-                "name": "Deadlift",
-                "points": 30
-            },
-            {
-                "date": "20 Nov 2021",
-                "reps": 20,
-                "sets": 4,
-                "name": "Ab Crunch",
-                "points": 40
-            },
-            {
-                "date": "25 Nov 2021",
-                "reps": 15,
-                "sets": 5,
-                "name": "Russian Twist",
-                "points": 15
-            },
-            {
-                "date": "21 Nov 2021",
-                "reps": 20,
-                "sets": 1,
-                "name": "Up Downs",
-                "points": 10
-            },
-            {
-                "date": "5 Nov 2021",
-                "reps": 5,
-                "sets": 5,
-                "name": "Bicep Curl",
-                "points": 20
-            },
-            {
-                "date": "Oct 5 2021",
-                "reps": 4,
-                "sets": 6,
-                "name": "Tricep Extension",
-                "points": 20
-            },
-            {
-                "date": "Oct 3 2021",
-                "reps": 1,
-                "sets": 10,
-                "name": "Butterfly Curl",
-                "points": 5
-            }
-        ],
+        "workoutData": [],
         "filteredWorkoutData": [],
         "selectedFilter": " last week",
-        "profilePhotoUrl": "https://i.stack.imgur.com/l60Hf.png",
-        "profileHeaderPhoto": "https://i.imgur.com/OOSF8qV.png"
+        "profilePhotoUrl": "./img/pfp.png",
+        "profileHeaderPhoto": "./img/header.png"
+ }
 }

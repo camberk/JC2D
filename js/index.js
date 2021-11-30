@@ -19,14 +19,14 @@ function setData() {
     }
     if (!localStorage.getItem('volumeLevel')) {
         localStorage.setItem('volumeLevel', 0.5);
-    } 
+    }
     // localStorage.setItem('volumeLevel', 0.5);
     volumeSettingGlobal = localStorage.getItem('volumeLevel');
     var slideAmount = volumeSettingGlobal * 100;
     $('#volumeDisplay').html('Volume: ' + slideAmount);
     $('#myVolumeRange').attr("value", slideAmount);
-    
-    
+
+
 }
 function clearData() {
     localStorage.clear();
@@ -41,7 +41,7 @@ const d = new Date();
 
 
 
-$(document).ready(function() {
+$(document).ready(function () {
     var path = window.location.pathname;
     var page = path.split("/").pop();
     if (page == "index.html") {
@@ -67,8 +67,8 @@ function drawLeaderBoardChart() {
     }
     setOthersPoints();
     var othersPoints = JSON.parse(localStorage.getItem('othersPoints'));
-    var yValues = [yourPoints, parseInt(othersPoints['Frank']), parseInt(othersPoints['Sam']), 
-    parseInt(othersPoints['Ava']), parseInt(othersPoints['Annie'])];
+    var yValues = [yourPoints, parseInt(othersPoints['Frank']), parseInt(othersPoints['Sam']),
+        parseInt(othersPoints['Ava']), parseInt(othersPoints['Annie'])];
     var barColors = ["red", "green", "blue", "orange", "brown"];
     var ctx = document.getElementById('leaderboardChart').getContext('2d');
     var leaderboardChart = new Chart(ctx, {
@@ -101,14 +101,14 @@ function drawProgressChart() {
         tempDate.setDate(currentDate.getDate() - i);
         currentWeekDates.push(tempDate);
     }
-    var cleanDates = 
-    [(currentWeekDates[0].getMonth() + 1) + '/' + currentWeekDates[0].getDate(),
-    (currentWeekDates[1].getMonth() + 1) + '/' + currentWeekDates[1].getDate(),
-    (currentWeekDates[2].getMonth() + 1) + '/' + currentWeekDates[2].getDate(),
-    (currentWeekDates[3].getMonth() + 1) + '/' + currentWeekDates[3].getDate(),
-    (currentWeekDates[4].getMonth() + 1) + '/' + currentWeekDates[4].getDate(),
-    (currentWeekDates[5].getMonth() + 1) + '/' + currentWeekDates[5].getDate(),
-    (currentWeekDates[6].getMonth() + 1) + '/' + currentWeekDates[6].getDate()];
+    var cleanDates =
+        [(currentWeekDates[0].getMonth() + 1) + '/' + currentWeekDates[0].getDate(),
+        (currentWeekDates[1].getMonth() + 1) + '/' + currentWeekDates[1].getDate(),
+        (currentWeekDates[2].getMonth() + 1) + '/' + currentWeekDates[2].getDate(),
+        (currentWeekDates[3].getMonth() + 1) + '/' + currentWeekDates[3].getDate(),
+        (currentWeekDates[4].getMonth() + 1) + '/' + currentWeekDates[4].getDate(),
+        (currentWeekDates[5].getMonth() + 1) + '/' + currentWeekDates[5].getDate(),
+        (currentWeekDates[6].getMonth() + 1) + '/' + currentWeekDates[6].getDate()];
     var yValues = [0, 0, 0, 0, 0, 0, 0];
     var counter = 0;
     if (localStorage.getItem("dataTBL")) {
@@ -130,19 +130,19 @@ function drawProgressChart() {
         data: {
             labels: cleanDates,
             datasets: [{
-            backgroundColor: "#F21B3F",
-            borderColor: "rgba(0,0,0,0.1)",
-            data: yValues
+                backgroundColor: "#F21B3F",
+                borderColor: "rgba(0,0,0,0.1)",
+                data: yValues
             }]
         },
-        options:{
+        options: {
             legend: { display: false },
             title: {
                 display: true,
                 text: "This Week's Progress",
                 fontSize: 20,
             }
-            
+
         }
     });
 }
@@ -229,97 +229,28 @@ function sortDate(a, b) {
 }
 
 
-  var profileView = new Vue({
+var profileView = new Vue({
     el: "#profile",
     data: {
         //store data for current profile
-        profileName: "John Smith",
-        profileNumber: 23414,
-        profileAge: 32,
-        profileAchievements: [{
-                achievementName: "From Athens to Marathon",
-                achievementPictureUrl: "https://www.pinclipart.com/picdir/big/2-24050_11-marathon-clipart-png-transparent-png.png",
-                achievementDescription: "Run a total 26.2 miles in a week"
-            },
-            {
-                achievementName: "Varisty  Athlete",
-                achievementPictureUrl: "https://pngimage.net/wp-content/uploads/2018/05/champ-png-6.png",
-                achievementDescription: "Complete 30 days of workouts"
-            },
-            {
-                achievementName: "Tear It Up!",
-                achievementPictureUrl: "https://www.clipartmax.com/png/full/80-802036_skateboard-clipart-transparent-skateboarder-pdf.png",
-                achievementDescription: "Skate, ski, or ride for the first time"
-            },
-            {
-                achievementName: "Junior Varisty",
-                achievementPictureUrl: "https://www.pinclipart.com/picdir/big/459-4590529_muscle-flex-outline-comments-flexing-arm-no-background.png",
-                achievementDescription: "Complete a week of workouts"
-            },
-            {
-                achievementName: "Blast Off",
-                achievementPictureUrl: "https://i.imgur.com/XNmBnWU.png",
-                achievementDescription: "Complete your first workout"
-            }
+        profileName: "",
+        profileNumber: 0,
+        profileAge: 0,
+        weeklyPoints: 0,
+        monthlyPoints: 0,
+        totalPoints: 0,
+        profileAchievements: [
         ],
         workoutBefore: true,
-        workoutData: [{
-                date: "01 Jan 1970",
-                reps: 10,                                                                                  
-                sets: 3,
-                name: "Deadlift",
-                points: 30
-            },
-            {
-                date: "20 Nov 2021",
-                reps: 20,
-                sets: 4,
-                name: "Ab Crunch",
-                points: 40
-            },
-            {
-                date: "25 Nov 2021",
-                reps: 15,
-                sets: 5,
-                name: "Russian Twist",
-                points: 15
-            },
-            {
-                date: "21 Nov 2021",
-                reps: 20,
-                sets: 1,
-                name: "Up Downs",
-                points: 10
-            },
-            {
-                date: "5 Nov 2021",
-                reps: 5,
-                sets: 5,
-                name: "Bicep Curl",
-                points: 20
-            },
-            {
-                date: "Oct 5 2021",
-                reps: 4,
-                sets: 6,
-                name: "Tricep Extension",
-                points: 20
-            },
-            {
-                date: "Oct 3 2021",
-                reps: 1,
-                sets: 10,
-                name: "Butterfly Curl",
-                points: 5
-            }
+        workoutData: [
         ],
         filteredWorkoutData: [],
         selectedFilter: " last week",
-        profilePhotoUrl: "https://i.stack.imgur.com/l60Hf.png",
-        profileHeaderPhoto: "https://i.imgur.com/OOSF8qV.png"
+        profilePhotoUrl: "",
+        profileHeaderPhoto: ""
     },
     methods: {
-        filterWeek: function() {
+        filterWeek: function () {
             var currentDate = new Date();
             this.filteredWorkoutData = [];
             for (i = 0; i < this.workoutData.length; i++) {
@@ -337,7 +268,7 @@ function sortDate(a, b) {
             this.filteredWorkoutData.sort(sortDate);
             this.selectedFilter = " the last week";
         },
-        filterMonth: function() {
+        filterMonth: function () {
             var currentDate = new Date();
             this.filteredWorkoutData = [];
             for (i = 0; i < this.workoutData.length; i++) {
@@ -355,30 +286,56 @@ function sortDate(a, b) {
             this.filteredWorkoutData.sort(sortDate);
             this.selectedFilter = " the last month";
         },
-        filterAll: function() {
+        filterAll: function () {
             this.filteredWorkoutData = this.workoutData;
             this.filteredWorkoutData.sort(sortDate);
-            this.selectedFilter = " all time";
+            this.selectedFilter = "  all time";
         }
     },
-    created: function() {
+    created: function () {
         //parse the profile
-        var data;
-         fetch("./profile.json").then(Response=>Response.json()).then( jsonData => {
-             jsonData = jsonData["profile"];
-             this.profileName = jsonData["profileName"];
-             this.profileNumber = jsonData["profileNumber"];
-             this.profileAge = jsonData["profileAge"];
-             this.profileAchievements = jsonData["profileAchievements"];
-             this.workoutBefore = jsonData["workoutBefore"];
-             this.workoutData = jsonData["workoutData"];
-             this.profilePhotoUrl = jsonData["profilePhotoUrl"];
-             this.profileHeaderPhoto = jsonData["profileHeaderPhoto"];
-         });
-
+        var result = JSON.parse(localStorage.getItem("dataTBL"));
+        for (var key in result[uniqName]) {
+            result[uniqName][key].forEach(element => {
+                var newObject = {
+                    date: element["date"],
+                    dateConvert: new Date(Date.parse(element["date"])).toDateString(),
+                    name: key,
+                    sets: element["sets"],
+                    reps: element["reps"],
+                    points: element["points"]
+                };
+                this.workoutData.push(newObject);
+            });
+        }
+        var thousandPoints = false;
+        var blastOff = false;
+        var juniorVarsity = false;
+        var varsity = false;
+        var racer = false;
+        var swimmer = false;
+        var lifter = false;
+        var biker = false;
+        fetch("./profile.json").then(Response => Response.json()).then(jsonData => {
+            jsonData = jsonData["profile"];
+            this.profileName = jsonData["profileName"];
+            this.profileNumber = jsonData["profileNumber"];
+            this.profileAge = jsonData["profileAge"];
+            this.profilePhotoUrl = jsonData["profilePhotoUrl"];
+            this.profileHeaderPhoto = jsonData["profileHeaderPhoto"];
+        });
+        var dateHash = {};
         var currentDate = new Date();
         this.filteredWorkoutData = [];
         for (i = 0; i < this.workoutData.length; i++) {
+            if(!blastOff){
+                blastOff = true;
+                this.profileAchievements.push({
+                    achievementName: "Blast Off",
+                    achievementPictureUrl: "./img/blastoff.png",
+                    achievementDescription: "Complete your first workout"
+                });
+            }
             console.log(this.workoutData[i]);
             var ms = Date.parse(this.workoutData[i].date);
             var converted = new Date(ms);
@@ -386,25 +343,82 @@ function sortDate(a, b) {
             var diff = (currentDate - ms) / (1000 * 60 * 60 * 24);
             console.log(diff);
             if (diff <= 7) {
-                console.log("Adding data");
+                this.weeklyPoints+=this.workoutData[i].points;
                 this.filteredWorkoutData.push(this.workoutData[i]);
             }
+            if (diff <= 30){
+                this.monthlyPoints+=this.workoutData[i].points;
+            }
+            if(!thousandPoints && this.workoutData[i].points>=1000){
+                thousandPoints = true;
+                this.profileAchievements.push({
+                    achievementName: "1k",
+                    achievementPictureUrl: "./img/oneK.png",
+                    achievementDescription: "Enter an exercise worth 1000 points"
+                });
+            }
+            if(!swimmer && this.workoutData[i].name == "Swimming"){
+                swimmer = true;
+                this.profileAchievements.push({
+                    achievementName: "Swimmer",
+                    achievementPictureUrl: "./img/swimmer.png",
+                    achievementDescription: "Swim for the first time"
+                });
+            }
+            if(!racer && (this.workoutData[i].name == "Running" || this.workoutData[i].name == "Sprinting")){
+                racer = true;
+                this.profileAchievements.push({
+                    achievementName: "Racer",
+                    achievementPictureUrl: "./img/racer.png",
+                    achievementDescription: "Run for the first time"
+                });
+            }
+            if(!lifter && (this.workoutData[i].name == "Snatch" || this.workoutData[i].name == "Jerk" || this.workoutData[i].name == "Clean" || this.workoutData[i].name == "Press" || this.workoutData[i].name == "Push Press" || this.workoutData[i].name == "Deadlift" || this.workoutData[i].name == "Romanian Deadlift" || this.workoutData[i].name == "Bench Press" || this.workoutData[i].name == "Bicep Curls" || this.workoutData[i].name == "Tricep Extensions")){
+                lifter = true;
+                this.profileAchievements.push({
+                    achievementName: "Lifter",
+                    achievementPictureUrl: "./img/lifter.png",
+                    achievementDescription: "Lift for the first time"
+                });
+            }
+            if(!biker && this.workoutData[i].name == "Biking"){
+                biker = true;
+                this.profileAchievements.push({
+                    achievementName: "Biker",
+                    achievementPictureUrl: "./img/biker.png",
+                    achievementDescription: "Bike for the first time"
+                });
+            }
+            this.totalPoints+=this.workoutData[i].points;
+            if(this.workoutData[i].dateConvert in dateHash){
+                dateHash[this.workoutData[i].dateConvert]++;
+                if(!juniorVarsity && dateHash[this.workoutData[i].dateConvert] >= 2){
+                    console.log("Two values in one day");
+                    juniorVarsity = true;
+                    this.profileAchievements.push({
+                        achievementName: "Junior Varisty",
+                        achievementPictureUrl: "./img/junior_varsity.png",
+                        achievementDescription: "Complete two workouts in a day"
+                    });
+                }
+                if(!varsity && dateHash[this.workoutData[i].dateConvert] >= 2){
+                    varsity = true;
+                    this.profileAchievements.push({
+                        achievementName: "Varisty  Athlete",
+                        achievementPictureUrl: "./img/varsity.png",
+                        achievementDescription: "Complete four workouts in a day"
+                    });
+                }
+            } else {
+                dateHash[this.workoutData[i].dateConvert] = 1
+            }
         }
+        this.profileAchievements = this.profileAchievements.reverse();
         this.filteredWorkoutData.sort(sortDate);
         this.selectedFilter = " last week";
-    },
-    //created() {
-    //on page loading, fetch profile name, profile photo
-    /*axious.get('/user?ID=123').then(
-        function(response){
-            this.profileName = response.name;
-            this.profilePhotoUrl = response.profilePhotoUrl;
-        }
-    ).catch(function(error){
-        console.log(error);
-    });*/
-    //}, 
-
+        
+        
+    }
 });
 
 var enterExercise = new Vue({
@@ -431,12 +445,12 @@ var enterExercise = new Vue({
 
     },
     methods: {
-        selectExercise: function(exercise) {
+        selectExercise: function (exercise) {
             this.exerciseSelected = exercise;
             this.arePointsPerMinute = listOfExercises[this.exerciseSelected]["arePointsPerMinute"];
             this.weightAdded = listOfExercises[this.exerciseSelected]["weightAdded"];
         },
-        enterData: function(event) {
+        enterData: function (event) {
             if (event.key == "Enter" && this.exerciseSelected != 'Select An Exercise') {
                 this.wt = true;
             }
@@ -456,7 +470,7 @@ var enterExercise = new Vue({
                 this.p = true;
             }
         },
-        writeUserData: function() {
+        writeUserData: function () {
             if (this.weight == '') {
                 this.weight = 0;
             }
@@ -470,8 +484,8 @@ var enterExercise = new Vue({
                     'date': Date(),
                 }
             } else {
-                this.points = (this.sets * this.reps * listOfExercises[this.exerciseSelected]["points"]) + 
-                ((this.weight + 1) * (listOfExercises[this.exerciseSelected]["points"] / 10));
+                this.points = (this.sets * this.reps * listOfExercises[this.exerciseSelected]["points"]) +
+                    ((this.weight + 1) * (listOfExercises[this.exerciseSelected]["points"] / 10));
                 data = {
                     'weight': this.weight,
                     'reps': this.reps,
@@ -484,8 +498,8 @@ var enterExercise = new Vue({
             if (!(dataTbl[uniqName])) {
                 let temp = {};
                 temp[this.workoutType] = [data]
-                dataTbl[uniqName]= temp;
-                
+                dataTbl[uniqName] = temp;
+
             }
             else {
                 if (!(dataTbl[uniqName][this.workoutType])) {
@@ -503,8 +517,8 @@ var enterExercise = new Vue({
             // window.location.reload();
             drawProgressChart();
         },
-    
-}
+
+    }
 });
 
 
@@ -513,7 +527,7 @@ var enterExercise = new Vue({
 Vue.component('reward-entry', {
     props: ['img', 'price', 'title', 'desc', 'flipped', 'index', 'disabled'],
     methods: {
-        onRewardConfirm: function(e) {
+        onRewardConfirm: function (e) {
             this.$emit('unlock-event', this.index);
             e.stopPropagation();
         }
@@ -588,26 +602,26 @@ let rewardView = new Vue({
         displayRewards: [],
         unlockedRewards: []
     },
-    created: function() {
+    created: function () {
         fetch("./rewards.json")
-        .then(response => {
-            return response.json();
-        })
-        .then(jsondata => {
-            this.rewards = jsondata;
-            this.displayRewards = jsondata;
+            .then(response => {
+                return response.json();
+            })
+            .then(jsondata => {
+                this.rewards = jsondata;
+                this.displayRewards = jsondata;
 
-            if (localStorage.getItem('unlockedIDs')) {
-                let IDs = JSON.parse(localStorage.getItem('unlockedIDs'));
-                this.unlockedRewards = this.rewards.filter(reward => 
-                    typeof IDs.find(x => x == reward['id']) === 'string'
-                );
-                this.rewards = this.rewards.filter(reward => 
-                    typeof IDs.find(x => x == reward['id']) === 'undefined'
-                );
-                this.updateRewardsSorting(0);
-            }
-        });
+                if (localStorage.getItem('unlockedIDs')) {
+                    let IDs = JSON.parse(localStorage.getItem('unlockedIDs'));
+                    this.unlockedRewards = this.rewards.filter(reward =>
+                        typeof IDs.find(x => x == reward['id']) === 'string'
+                    );
+                    this.rewards = this.rewards.filter(reward =>
+                        typeof IDs.find(x => x == reward['id']) === 'undefined'
+                    );
+                    this.updateRewardsSorting(0);
+                }
+            });
         if (localStorage.getItem("dataTBL")) {
             let result = JSON.parse(localStorage.getItem("dataTBL"));
             for (var key in result[uniqName]) {
@@ -621,10 +635,10 @@ let rewardView = new Vue({
             this.pointCount -= parseInt(localStorage.getItem("pointsSpent"));
         }
 
-        
+
     },
     methods: {
-        onRewardConfirm: function(e) {
+        onRewardConfirm: function (e) {
             this.pointCount -= this.rewards[e]['price'];
             let unlocked = this.rewards.splice(e, 1);
             console.log(unlocked);
@@ -645,10 +659,10 @@ let rewardView = new Vue({
             }
             unlockedIDs.push(unlocked[0]['id']);
             localStorage.setItem('unlockedIDs', JSON.stringify(unlockedIDs));
-            
+
         },
 
-        updateRewardsSorting: function(e) {
+        updateRewardsSorting: function (e) {
             this.sorting = e;
             this.displayRewards = new Array();
             this.rewards.forEach(reward => {

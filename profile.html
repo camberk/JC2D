@@ -39,7 +39,7 @@
                 <p id='profileNumberText'>User ID: {{profileNumber}}</p>
             </div>
             <div id="achievementDiv">
-                <div id="achievementTitle"><span>Achievements<span></div>
+                <div id="achievementTitle"><p>Achievements<span></div>
                 <div class="achievementFlexContainer">
                     <div class="achievementBox" v-for="value in profileAchievements">
                         <p class="achievementText">
@@ -64,14 +64,15 @@
                         </div>
                     </div>
                 </div>
-                <span id="forSelectedFilter">For {{selectedFilter}}</span>
+                <p id="forSelectedFilter">For {{selectedFilter}}</p>
                     <div class="workoutFlexContainer">
                         <div v-for="value in filteredWorkoutData">
                             <div class="workoutBox">
-                                <p class="workoutDate">{{value.date}}</p>
+                                <p class="workoutDate">{{value.dateConvert}}</p>
                                 <p class="workoutName">{{value.name}}</p>
                                 <p class="workoutSets">Sets: {{value.sets}}</p>
                                 <p class="workoutReps">Reps: {{value.reps}}</p>
+                                <p>Points: {{value.points}}</p>
                             </div>
                         </div>
                     </div>

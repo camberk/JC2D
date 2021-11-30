@@ -213,8 +213,10 @@ body {
 }
 
 #timeDropdown {
-    position: relative;
-    display: inline-block;
+    position:relative;
+    display:inline-block;
+    width: 200px;
+    height: 100px;
 }
 
 #timeDropdownContent {
@@ -275,7 +277,7 @@ body {
 }
 
 .workoutFlexContainer {
-    height: 350px;
+    height: 450px;
     width: 100%;
     display: flex;
     flex-wrap: wrap;
