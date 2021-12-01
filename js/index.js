@@ -672,6 +672,7 @@ let rewardView = new Vue({
                 unlockedIDs = JSON.parse(localStorage.getItem('unlockedIDs'));
             }
             unlockedIDs.push(unlocked[0]['id']);
+            successSound.play();
             localStorage.setItem('unlockedIDs', JSON.stringify(unlockedIDs));
 
         },
