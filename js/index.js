@@ -536,6 +536,11 @@ var enterExercise = new Vue({
 
             exerciseEnteredSound.play();
             drawProgressChart();
+            this.weight = '';
+            this.reps = '';
+            this.sets = '';
+            this.minutes = '';
+            this.points = '';
         },
 
     }
