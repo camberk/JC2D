@@ -48,7 +48,7 @@
                      <input id='weight' type="text" v-model="weight">
                      <p class='datachild'> {{weight}} lbs </p>
                   </div>
-                  <div class='dataparent' v-if="!arePointsPerMinute">
+                  <div class='dataparent' v-if="!arePointsPerMinute && exerciseNotEmpty">
                      <p class='datachild'>Number of Reps</p>
                      <input id='numberreps' type="text" v-model="reps">
                      <p class='datachild'> {{reps}} reps </p>
@@ -58,7 +58,7 @@
                      <input id='numberminutes' type="text" v-model="minutes">
                      <p class='datachild'> {{minutes}} minutes </p>
                   </div>
-                  <div class='dataparent'>
+                  <div class='dataparent' v-if="setsUsed">
                      <p class='datachild'>Number of Sets</p>
                      <input id='numbersets' type="text" v-model="sets">
                      <p class='datachild'> {{sets}} sets </p>
@@ -67,7 +67,7 @@
                      <p class='datachild'> {{date}} </p>
                   </div>
                   <div>
-                     <button id='enter' v-on:click='writeUserData'> Enter Data </p>
+                     <button v-if="exerciseNotEmpty" id='enter' v-on:click='writeUserData'> Enter Data </p>
                   </div>
                   
                </div>

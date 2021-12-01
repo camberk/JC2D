@@ -450,6 +450,8 @@ var enterExercise = new Vue({
         testdb: '',
         arePointsPerMinute: false,
         weightAdded: false,
+        setsUsed: false,
+        exerciseNotEmpty: false,
 
     },
     methods: {
@@ -457,6 +459,8 @@ var enterExercise = new Vue({
             this.exerciseSelected = exercise;
             this.arePointsPerMinute = listOfExercises[this.exerciseSelected]["arePointsPerMinute"];
             this.weightAdded = listOfExercises[this.exerciseSelected]["weightAdded"];
+            this.setsUsed = listOfExercises[this.exerciseSelected]["setsUsed"];
+            this.exerciseNotEmpty = true; 
         },
         enterData: function (event) {
             if (event.key == "Enter" && this.exerciseSelected != 'Select An Exercise') {
