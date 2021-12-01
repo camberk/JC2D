@@ -153,7 +153,7 @@ function drawProgressChart() {
 
 function setOthersPoints() {
     var currentDate = new Date();
-    console.log(Math.random(0, 10000));
+    // console.log(Math.random(0, 10000));
     if (localStorage.getItem('othersPoints')) {
         var oldOthersPoints = JSON.parse(localStorage.getItem('othersPoints'));
         if (!isDateEqualToCurrentDate(oldOthersPoints['date'])) {
@@ -224,11 +224,11 @@ function toSettingsPage() {
 }
 
 function sortDate(a, b) {
-    console.log(a);
+    // console.log(a);
     var dateA = Date.parse(a.date);
     var dateB = Date.parse(b.date);
-    console.log(dateA + " " + dateB)
-    console.log(dateA < dateB);
+    // console.log(dateA + " " + dateB)
+    // console.log(dateA < dateB);
     return dateB - dateA;
 }
 
@@ -258,14 +258,14 @@ var profileView = new Vue({
             var currentDate = new Date();
             this.filteredWorkoutData = [];
             for (i = 0; i < this.workoutData.length; i++) {
-                console.log(this.workoutData[i]);
+                // console.log(this.workoutData[i]);
                 var ms = Date.parse(this.workoutData[i].date);
                 var converted = new Date(ms);
                 //get ms time difference => 1000ms/s * 60s/min * 60min/hour * 24hour/day
                 var diff = (currentDate - ms) / (1000 * 60 * 60 * 24);
-                console.log(diff);
+                // console.log(diff);
                 if (diff <= 7) {
-                    console.log("Adding data");
+                    // console.log("Adding data");
                     this.filteredWorkoutData.push(this.workoutData[i]);
                 }
             }
@@ -276,14 +276,14 @@ var profileView = new Vue({
             var currentDate = new Date();
             this.filteredWorkoutData = [];
             for (i = 0; i < this.workoutData.length; i++) {
-                console.log(this.workoutData[i]);
+                // console.log(this.workoutData[i]);
                 var ms = Date.parse(this.workoutData[i].date);
                 var converted = new Date(ms);
                 //get ms time difference => 1000ms/s * 60s/min * 60min/hour * 24hour/day
                 var diff = (currentDate - ms) / (1000 * 60 * 60 * 24);
-                console.log(diff);
+                // console.log(diff);
                 if (diff <= 30) {
-                    console.log("Adding data");
+                    // console.log("Adding data");
                     this.filteredWorkoutData.push(this.workoutData[i]);
                 }
             }
@@ -342,12 +342,12 @@ var profileView = new Vue({
                         achievementDescription: "Complete your first workout"
                     });
                 }
-                console.log(this.workoutData[i]);
+                // console.log(this.workoutData[i]);
                 var ms = Date.parse(this.workoutData[i].date);
                 var converted = new Date(ms);
                 //get ms time difference => 1000ms/s * 60s/min * 60min/hour * 24hour/day
                 var diff = (currentDate - ms) / (1000 * 60 * 60 * 24);
-                console.log(diff);
+                // console.log(diff);
                 if (diff <= 7) {
                     this.weeklyPoints+=this.workoutData[i].points;
                     this.filteredWorkoutData.push(this.workoutData[i]);
@@ -399,7 +399,7 @@ var profileView = new Vue({
                 if(this.workoutData[i].dateConvert in dateHash){
                     dateHash[this.workoutData[i].dateConvert]++;
                     if(!juniorVarsity && dateHash[this.workoutData[i].dateConvert] >= 2){
-                        console.log("Two values in one day");
+                        // console.log("Two values in one day");
                         juniorVarsity = true;
                         this.profileAchievements.push({
                             achievementName: "Junior Varisty",
@@ -484,6 +484,9 @@ var enterExercise = new Vue({
                 alert("please select an exercise.");
                 return;
             }
+            if (this.sets == '') {
+                this.sets = 1;
+            }
             if (this.weight == '') {
                 this.weight = 0;
             }
@@ -525,9 +528,8 @@ var enterExercise = new Vue({
             let tempds = JSON.stringify(dataTbl);
             localStorage.setItem("dataTBL", tempds);
             let result = JSON.parse(localStorage.getItem("dataTBL"));
-            console.log(result);
+            // console.log(result);
 
-            // window.location.reload();
             exerciseEnteredSound.play();
             drawProgressChart();
         },
@@ -655,7 +657,7 @@ let rewardView = new Vue({
         onRewardConfirm: function (e) {
             this.pointCount -= this.rewards[e]['price'];
             let unlocked = this.rewards.splice(e, 1);
-            console.log(unlocked);
+            // console.log(unlocked);
             this.unlockedRewards.push(unlocked[0]);
             this.updateRewardsSorting(this.sorting);
 
