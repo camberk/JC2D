@@ -8,4 +8,4 @@ Sounds Effects are from https://www.zapsplat.com/?s=win&post_type=music&sound-ef
 Favicon is from https://icons8.com/icon/set/data/doodle
 Settings Gear image is from: https://www.iconsdb.com/gray-icons/settings-5-icon.html
 
-You can run our code locally using by hosting a live server (for example, using the live server plugin in VS Code, and launching the server while having the project directory open)
+You can run our code locally using by hosting a live server (for example, using the live server plugin in VS Code, and launching the server while having the index.html file open in the editor)
